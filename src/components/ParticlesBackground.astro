@@ -1,0 +1,111 @@
+---
+
+---
+
+<div id="tsparticles"></div>
+
+<script>
+  import {
+    type Container,
+    type Engine,
+    type ISourceOptions,
+  } from "@tsparticles/engine";
+  import { loadSlim } from "@tsparticles/slim";
+
+  const particlesConfig: ISourceOptions = {
+    fullScreen: {
+      enable: true,
+      zIndex: -1,
+    },
+    particles: {
+      number: {
+        value: 50,
+        density: {
+          enable: true,
+        },
+      },
+      color: {
+        value: "#7611a6",
+      },
+      shape: {
+        type: "circle",
+      },
+      opacity: {
+        value: 0.7,
+        animation: {
+          enable: false,
+        },
+      },
+      size: {
+        value: 2,
+        animation: {
+          enable: true,
+          speed: 20,
+          sync: false,
+        },
+      },
+      links: {
+        enable: true,
+        distance: 150,
+        color: "#c561f6",
+        opacity: 0.5,
+        width: 1,
+      },
+      move: {
+        enable: true,
+        speed: 2,
+        direction: "none",
+        random: false,
+        straight: false,
+        outModes: {
+          default: "out",
+        },
+      },
+    },
+    interactivity: {
+      events: {
+        onHover: {
+          enable: true,
+          mode: "repulse",
+        },
+        onClick: {
+          enable: true,
+          mode: "push",
+        },
+      },
+    },
+    background: {
+      color: "transparent",
+      position: "50% 50%",
+      repeat: "no-repeat",
+      size: "cover",
+    },
+  };
+
+  async function loadParticles(engine: Engine): Promise<Container | undefined> {
+    await loadSlim(engine);
+    return await engine.load({
+      id: "tsparticles",
+      options: particlesConfig,
+    });
+  }
+
+  // Initialize on window load
+  window.addEventListener("load", async () => {
+    const { tsParticles } = await import("@tsparticles/engine");
+    await loadParticles(tsParticles);
+  });
+</script>
+
+<style>
+  #tsparticles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    z-index: -1;
+  }
+</style>
