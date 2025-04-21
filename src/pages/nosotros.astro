@@ -8,9 +8,9 @@ import Hero from "../components/Hero.astro";
 <BaseLayout title="About | RENOVA" description="About RENOVA Lorem Ipsum">
   <div class="stack gap-20">
     <main class="wrapper about">
-      <Hero
-        title="About"
-        tagline="Thanks for stopping by. Read below to learn more about myself and my background."
+      <!-- <Hero
+        title="¿Quiénes somos?"
+        tagline="Estudio creativo Renova, donde la belleza y la innovación se unen para crear soluciones visuales que impactan."
       >
         <img
           width="1553"
@@ -59,7 +59,37 @@ import Hero from "../components/Hero.astro";
             <li>Autenticidad</li>
           </ul>
         </div>
-      </section>
+      </section> -->
+      <div class="grid">
+        <div class="mision">
+          <h2 class="section-title">Misión:</h2>
+          <div class="content">
+            <p>
+              Nos enfocamos en Diseñar marcas con propósito, identidad visual
+              con alma y estrategias visuales que inspiran y conectan con el
+              público, además de darle un toque de profesionalismo que una
+              empresa o negocio necesita hoy en día en el mundo digital.
+            </p>
+            <p>
+              En Estudio Creativo Renova, cada proyecto se convierte en una
+              oportunidad para contar historias visuales impactantes que
+              inspiran confianza y generan resultados que impacten.
+            </p>
+          </div>
+        </div>
+        <div class="vision">
+          <h2 class="section-title">Visión:</h2>
+          <div class="content">
+            <p>
+              Buscamos revolucionar y desarrollar marcas visionarias, para
+              empresas que valoran la creatividad, la calidad y el impacto en su
+              comunicación visual, transformando proyectos en historias de éxito
+              y construyendo un legado de diseño innovador.
+            </p>
+          </div>
+        </div>
+        <div class="imagen">Imagen</div>
+      </div>
     </main>
 
     <ContactCTA />
@@ -108,6 +138,25 @@ import Hero from "../components/Hero.astro";
   }
 
   @media (min-width: 50em) {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(5, 1fr);
+      gap: 1rem;
+    }
+
+    .mision {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    .vision {
+      grid-column: 3 / span 3;
+    }
+    .imagen {
+      grid-column: 3 / span 3;
+      grid-row: 2;
+    }
+
     .about {
       display: grid;
       grid-template-columns: 1fr 60% 1fr;
