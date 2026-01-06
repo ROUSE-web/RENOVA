@@ -1,0 +1,203 @@
+---
+import Icon from "./Icon.astro";
+
+const testimonials = [
+    {
+        name: "María Gonzales",
+        role: "CEO, TechStart",
+        content:
+            "El equipo de Renova transformó completamente nuestra presencia digital. El diseño es moderno, rápido y exactamente lo que buscábamos.",
+        image: "/assets/stock-1.jpg",
+    },
+    {
+        name: "Carlos Rodriguez",
+        role: "Director de Marketing, GreenLife",
+        content:
+            "Increíble atención al detalle. Nuestro sitio web ahora carga más rápido y la experiencia de usuario es impecable. ¡Altamente recomendados!",
+        image: "/assets/stock-2.jpg",
+    },
+    {
+        name: "Ana P.",
+        role: "Fundadora, Artesanías Ana",
+        content:
+            "Gracias a Renova, mis ventas online han aumentado considerablemente. El diseño de la tienda es intuitivo y hermoso.",
+        image: "/assets/stock-3.jpg",
+    },
+    {
+        name: "Pedro S.",
+        role: "Consultor Independiente",
+        content:
+            "Profesionalismo y creatividad en su máxima expresión. Captaron la esencia de mi marca personal a la perfección.",
+        image: "/assets/stock-4.jpg",
+    },
+];
+---
+
+<div class="carousel-container">
+    <div class="carousel-track">
+        {
+            /* Render testimonials twice to create seamless loop */
+            [...testimonials, ...testimonials].map((testimonial) => (
+                <div class="testimonial-card">
+                    <div class="profile">
+                        <img
+                            src={testimonial.image}
+                            alt={testimonial.name}
+                            loading="lazy"
+                        />
+                        <div class="meta">
+                            <h5>{testimonial.name}</h5>
+                            <span class="role">{testimonial.role}</span>
+                        </div>
+                    </div>
+                    <p class="content">"{testimonial.content}"</p>
+                    <div class="icon-quote">
+                        <Icon icon="strategy" size="2.5rem" gradient />
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</div>
+
+<style is:inline>
+    .carousel-container {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        padding: 2rem 0;
+        /* Fade effect on edges */
+        -webkit-mask-image: linear-gradient(
+            to right,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent
+        );
+        mask-image: linear-gradient(
+            to right,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent
+        );
+    }
+
+    .carousel-track {
+        display: flex;
+        width: max-content;
+        gap: 2rem;
+        animation: scroll 40s linear infinite;
+    }
+
+    /* Pause animation on hover */
+    .carousel-track:hover {
+        animation-play-state: paused;
+    }
+
+    .testimonial-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 2rem;
+        background: var(--gradient-subtle);
+        border: 1px solid var(--gray-800);
+        border-radius: 1.5rem;
+        box-shadow: var(--shadow-sm);
+        transition: all var(--theme-transition);
+        height: 100%;
+        overflow: hidden;
+        /* Fixed width for carousel items */
+        width: 300px;
+        flex-shrink: 0;
+    }
+
+    .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
+        border-color: var(--accent-regular);
+    }
+
+    .profile {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .profile img {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--accent-regular);
+    }
+
+    .meta {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .meta h5 {
+        font-size: var(--text-md);
+        margin: 0;
+        color: var(--gray-0);
+    }
+
+    .role {
+        font-size: var(--text-sm);
+        color: var(--gray-400);
+    }
+
+    .content {
+        font-size: var(--text-base);
+        color: var(--gray-300);
+        line-height: 1.6;
+        font-style: italic;
+        flex-grow: 1;
+        z-index: 1;
+    }
+
+    .icon-quote {
+        position: absolute;
+        bottom: -0.5rem;
+        right: 1.5rem;
+        opacity: 0.1;
+        transform: rotate(180deg);
+        pointer-events: none;
+        transition: opacity var(--theme-transition);
+    }
+
+    .testimonial-card:hover .icon-quote {
+        opacity: 0.2;
+    }
+
+    /* Infinite Scroll Animation */
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            /* Move left by half the total width (the width of the original set) plus gap adjustments */
+            /* Each set is 4 items * (300px width + 2rem gap) = 4 * (300 + 32) = 1328px */
+            transform: translateX(calc(-1 * (300px + 2rem) * 4));
+        }
+    }
+
+    @media (min-width: 50em) {
+        .testimonial-card {
+            width: 400px;
+            padding: 2.5rem;
+        }
+
+        /* Recalculate animation distance for larger cards */
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-1 * (400px + 2rem) * 4));
+            }
+        }
+    }
+</style>
