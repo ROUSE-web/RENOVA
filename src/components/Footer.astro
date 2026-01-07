@@ -1,27 +1,68 @@
 ---
-import Icon from './Icon.astro';
+import Icon from "./Icon.astro";
 const currentYear = new Date().getFullYear();
 ---
 
 <footer>
+	<div class="socials">
+		<a
+			href="https://www.facebook.com/RenovaEstudiocreativo"
+			target="_blank"
+			class="social-link facebook"
+			aria-label="Facebook"
+		>
+			<Icon icon="facebook-logo" size="1.8em" color="white" />
+		</a>
+		<a
+			href="https://www.instagram.com/renova_estudiodesing/"
+			target="_blank"
+			class="social-link instagram"
+			aria-label="Instagram"
+		>
+			<Icon icon="instagram-logo" size="1.8em" color="white" />
+		</a>
+		<a
+			href="https://www.tiktok.com/@renova.estudio.creativo"
+			target="_blank"
+			class="social-link tiktok"
+			aria-label="TikTok"
+		>
+			<Icon icon="tiktok-logo" size="1.8em" color="white" />
+		</a>
+		<a
+			href="mailto:renovaestudiocreativo@gmail.com"
+			target="_blank"
+			class="social-link email"
+			aria-label="Correo"
+		>
+			<Icon icon="paper-plane-tilt" size="1.8em" color="white" />
+		</a>
+		<a
+			href="https://wa.me/59175923339"
+			target="_blank"
+			class="social-link whatsapp"
+			aria-label="WhatsApp"
+		>
+			<Icon icon="whatsapp-logo" size="1.8em" color="white" />
+		</a>
+	</div>
+	<div></div>
 	<div class="group">
 		<p>
-			Designed & Developed in Portland with <a href="https://astro.build/">Astro</a>
+			Desarrollado por <a href="https://wa.me/59172746800" target="_blank"
+				>Deyvi Rodriguez</a
+			>
+			con <a href="https://astro.build/" target="_blank">Astro</a>
 			<Icon icon="rocket-launch" size="1.2em" />
 		</p>
-		<p>&copy; {currentYear} Jeanine White</p>
+		<p>&copy; {currentYear} Equipo RENOVA</p>
 	</div>
-	<p class="socials">
-		<a href="https://twitter.com/me"> Twitter</a>
-		<a href="https://github.com/me"> GitHub</a>
-		<a href="https://codepen.io/me"> CodePen</a>
-	</p>
 </footer>
 <style>
 	footer {
 		display: flex;
 		flex-direction: column;
-		gap: 3rem;
+		gap: 1.5rem;
 		margin-top: auto;
 		padding: 3rem 2rem 3rem;
 		text-align: center;
@@ -50,14 +91,63 @@ const currentYear = new Date().getFullYear();
 	.socials {
 		display: flex;
 		justify-content: center;
-		gap: 1rem;
+		gap: 1.5rem;
 		flex-wrap: wrap;
+	}
+
+	.social-link {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 3rem;
+		height: 3rem;
+		border-radius: 50%;
+		transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+		color: white;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.social-link:hover {
+		transform: scale(1.15);
+	}
+
+	.social-link.facebook {
+		background-color: #1877f2;
+		box-shadow: 0 4px 12px rgba(24, 119, 242, 0.4);
+	}
+
+	.social-link.instagram {
+		background: radial-gradient(
+			circle at 30% 107%,
+			#fdf497 0%,
+			#fdf497 5%,
+			#fd5949 45%,
+			#d6249f 60%,
+			#285aeb 90%
+		);
+		box-shadow: 0 4px 12px rgba(214, 36, 159, 0.4);
+	}
+
+	.social-link.tiktok {
+		background-color: #000000;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+	}
+
+	.social-link.email {
+		background-color: #ea4335;
+		box-shadow: 0 4px 12px rgba(234, 67, 53, 0.4);
+	}
+
+	.social-link.whatsapp {
+		background-color: #25d366;
+		box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
 	}
 
 	@media (min-width: 50em) {
 		footer {
-			flex-direction: row;
-			justify-content: space-between;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
 			padding: 2.5rem 5rem;
 		}
 
@@ -65,10 +155,7 @@ const currentYear = new Date().getFullYear();
 			flex-direction: row;
 			gap: 1rem;
 			flex-wrap: wrap;
-		}
-
-		.socials {
-			justify-content: flex-end;
+			justify-content: center;
 		}
 	}
 </style>

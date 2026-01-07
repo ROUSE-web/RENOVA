@@ -1,12 +1,13 @@
 ---
 interface Props {
 	href: string;
+	size?: "sm" | "lg";
 }
 
-const { href } = Astro.props;
+const { href, size = "lg" } = Astro.props;
 ---
 
-<a href={href}><slot /></a>
+<a href={href} data-size={size}><slot /></a>
 
 <style>
 	a {
@@ -24,17 +25,22 @@ const { href } = Astro.props;
 		background: var(--gradient-accent-orange);
 		box-shadow: var(--shadow-md);
 		white-space: nowrap;
+		width: fit-content;
+		margin-inline: auto;
 	}
 
 	@media (min-width: 20em) {
 		a {
 			font-size: var(--text-lg);
 		}
+		a[data-size="sm"] {
+			font-size: var(--text-md);
+		}
 	}
 
 	/* Overlay for hover effects. */
 	a::after {
-		content: '';
+		content: "";
 		position: absolute;
 		inset: 0;
 		pointer-events: none;
@@ -51,6 +57,11 @@ const { href } = Astro.props;
 		a {
 			padding: 1.125rem 2.5rem;
 			font-size: var(--text-xl);
+			margin-inline: 0;
+		}
+		a[data-size="sm"] {
+			padding: 1rem 2rem;
+			font-size: var(--text-lg);
 		}
 	}
 </style>
