@@ -1,37 +1,79 @@
 ---
-import { getCollection } from "astro:content";
-
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-import PortfolioPreview from "../components/PortfolioPreview.astro";
 import Hero from "../components/Hero.astro";
-import Grid from "../components/Grid.astro";
+import CardServices from "../components/CardServices.astro";
 
-const projects = (await getCollection("servicios")).sort(
-  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
-);
+const services = [
+  {
+    title: "Creación de Marca",
+    image: "/assets/services/branding/branding-banner.webp",
+  },
+  {
+    title: "Diseño de Papelería Corporativa",
+    image: "/assets/services/stationery/stationery-banner.webp",
+  },
+  {
+    title: "Diseño de Empaques",
+    image: "/assets/services/packaging/packaging-banner.webp",
+  },
+  {
+    title: "Social Media",
+    image: "/assets/services/social-media/social-media-banner.webp",
+  },
+  {
+    title: "Desarrollo Web",
+    image: "/assets/services/web-dev/web-dev-banner.webp",
+  },
+  {
+    title: "Gigantografía",
+    image: "/assets/services/gigantografia/gigantografia-banner.webp",
+  },
+];
 ---
 
 <BaseLayout
-  title="Works | RENOVA"
-  description="Algunos de los trabajos que realizamos"
+  title="Servicios | RENOVA"
+  description="Algunos de los servicios que ofrecemos"
 >
   <div class="stack gap-20">
     <main class="wrapper stack gap-8">
       <Hero
-        title="Works"
-        tagline="See my most recent projects below to get an idea of my past experience."
+        title="Nuestros Servicios"
+        tagline="Algunos de los servicios que ofrecemos"
         align="start"
       />
-      <Grid variant="offset">
+      <div class="services-grid">
         {
-          projects.map((project) => (
-            <li>
-              <PortfolioPreview project={project} />
-            </li>
+          services.map((service) => (
+            <CardServices title={service.title} image={service.image} />
           ))
         }
-      </Grid>
+      </div>
     </main>
   </div>
 </BaseLayout>
+
+<style>
+  /* Services Grid Styles */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    width: 100%;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+  }
+</style>
