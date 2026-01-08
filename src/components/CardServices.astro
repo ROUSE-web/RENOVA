@@ -7,9 +7,16 @@ interface Props {
 }
 
 const { title, image } = Astro.props;
+
+// Generate URL-friendly slug from title
+const slug = title
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // Remove accents
+    .replace(/\s+/g, "-"); // Replace spaces with hyphens
 ---
 
-<div class="service-card">
+<a href={`/servicios/${slug}`} class="service-card">
     <div class="card-image" style={`background-image: url(${image})`}></div>
     <div class="card-overlay"></div>
     <div class="card-content">
@@ -18,7 +25,7 @@ const { title, image } = Astro.props;
             <Icon icon="arrow-right" size="1.5em" />
         </div>
     </div>
-</div>
+</a>
 
 <style>
     .service-card {
@@ -30,6 +37,8 @@ const { title, image } = Astro.props;
         cursor: pointer;
         box-shadow: var(--shadow-sm);
         transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        text-decoration: none;
+        display: block;
     }
 
     .service-card:hover {
@@ -85,6 +94,7 @@ const { title, image } = Astro.props;
         line-height: 1.2;
         margin: 0;
         max-width: 85%;
+        color: white;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         transform: translateY(0);
         transition: transform 0.4s ease;

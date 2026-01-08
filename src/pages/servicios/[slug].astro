@@ -1,0 +1,204 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import Carousel3D from "../../components/Carousel3D.astro";
+
+// Define all services with their slugs and images
+const services = [
+    {
+        title: "Creación de Marca",
+        slug: "creacion-de-marca",
+        description: "Desarrollo de identidad visual y estrategia de marca",
+        images: [
+            "/assets/services/branding/proyecto-1.webp",
+            "/assets/services/branding/proyecto-2.webp",
+            "/assets/services/branding/proyecto-3.webp",
+            "/assets/services/branding/proyecto-4.webp",
+            "/assets/services/branding/proyecto-5.webp",
+        ],
+    },
+    {
+        title: "Diseño de Papelería Corporativa",
+        slug: "diseno-de-papeleria-corporativa",
+        description: "Diseño profesional de material corporativo",
+        images: [
+            "/assets/services/stationery/proyecto-1.webp",
+            "/assets/services/stationery/proyecto-2.webp",
+            "/assets/services/stationery/proyecto-3.webp",
+            "/assets/services/stationery/proyecto-4.webp",
+            "/assets/services/stationery/proyecto-5.webp",
+        ],
+    },
+    {
+        title: "Diseño de Empaques",
+        slug: "diseno-de-empaques",
+        description: "Soluciones creativas para packaging",
+        images: [
+            "/assets/services/packaging/proyecto-1.webp",
+            "/assets/services/packaging/proyecto-2.webp",
+            "/assets/services/packaging/proyecto-3.webp",
+            "/assets/services/packaging/proyecto-4.webp",
+            "/assets/services/packaging/proyecto-5.webp",
+        ],
+    },
+    {
+        title: "Social Media",
+        slug: "social-media",
+        description: "Gestión y diseño para redes sociales",
+        images: [
+            "/assets/services/social-media/proyecto-1.webp",
+            "/assets/services/social-media/proyecto-2.webp",
+            "/assets/services/social-media/proyecto-3.webp",
+            "/assets/services/social-media/proyecto-4.webp",
+            "/assets/services/social-media/proyecto-5.webp",
+        ],
+    },
+    {
+        title: "Desarrollo Web",
+        slug: "desarrollo-web",
+        description: "Sitios web modernos y responsivos",
+        images: [
+            "/assets/services/web-dev/proyecto-1.webp",
+            "/assets/services/web-dev/proyecto-2.webp",
+            "/assets/services/web-dev/proyecto-3.webp",
+            "/assets/services/web-dev/proyecto-4.webp",
+            "/assets/services/web-dev/proyecto-5.webp",
+        ],
+    },
+    {
+        title: "Gigantografía",
+        slug: "gigantografia",
+        description: "Impresión de gran formato",
+        images: [
+            "/assets/services/gigantografia/proyecto-1.webp",
+            "/assets/services/gigantografia/proyecto-2.webp",
+            "/assets/services/gigantografia/proyecto-3.webp",
+            "/assets/services/gigantografia/proyecto-4.webp",
+            "/assets/services/gigantografia/proyecto-5.webp",
+        ],
+    },
+];
+
+// Get the slug from the URL
+const { slug } = Astro.params;
+
+// Find the service by slug
+const service = services.find((s) => s.slug === slug);
+
+// If service not found, return 404
+if (!service) {
+    return Astro.redirect("/404");
+}
+
+// Set page metadata
+const pageTitle = `${service.title} | RENOVA`;
+const pageDescription = service.description;
+
+// This function is required for static site generation
+export function getStaticPaths() {
+    const services = [
+        {
+            title: "Creación de Marca",
+            slug: "creacion-de-marca",
+            description: "Desarrollo de identidad visual y estrategia de marca",
+            images: [
+                "/assets/services/branding/proyecto-1.webp",
+                "/assets/services/branding/proyecto-2.webp",
+                "/assets/services/branding/proyecto-3.webp",
+                "/assets/services/branding/proyecto-4.webp",
+                "/assets/services/branding/proyecto-5.webp",
+            ],
+        },
+        {
+            title: "Diseño de Papelería Corporativa",
+            slug: "diseno-de-papeleria-corporativa",
+            description: "Diseño profesional de material corporativo",
+            images: [
+                "/assets/services/stationery/proyecto-1.webp",
+                "/assets/services/stationery/proyecto-2.webp",
+                "/assets/services/stationery/proyecto-3.webp",
+                "/assets/services/stationery/proyecto-4.webp",
+                "/assets/services/stationery/proyecto-5.webp",
+            ],
+        },
+        {
+            title: "Diseño de Empaques",
+            slug: "diseno-de-empaques",
+            description: "Soluciones creativas para packaging",
+            images: [
+                "/assets/services/packaging/proyecto-1.webp",
+                "/assets/services/packaging/proyecto-2.webp",
+                "/assets/services/packaging/proyecto-3.webp",
+                "/assets/services/packaging/proyecto-4.webp",
+                "/assets/services/packaging/proyecto-5.webp",
+            ],
+        },
+        {
+            title: "Social Media",
+            slug: "social-media",
+            description: "Gestión y diseño para redes sociales",
+            images: [
+                "/assets/services/social-media/proyecto-1.webp",
+                "/assets/services/social-media/proyecto-2.webp",
+                "/assets/services/social-media/proyecto-3.webp",
+                "/assets/services/social-media/proyecto-4.webp",
+                "/assets/services/social-media/proyecto-5.webp",
+            ],
+        },
+        {
+            title: "Desarrollo Web",
+            slug: "desarrollo-web",
+            description: "Sitios web modernos y responsivos",
+            images: [
+                "/assets/services/web-dev/proyecto-1.webp",
+                "/assets/services/web-dev/proyecto-2.webp",
+                "/assets/services/web-dev/proyecto-3.webp",
+                "/assets/services/web-dev/proyecto-4.webp",
+                "/assets/services/web-dev/proyecto-5.webp",
+            ],
+        },
+        {
+            title: "Gigantografía",
+            slug: "gigantografia",
+            description: "Impresión de gran formato",
+            images: [
+                "/assets/services/gigantografia/proyecto-1.webp",
+                "/assets/services/gigantografia/proyecto-2.webp",
+                "/assets/services/gigantografia/proyecto-3.webp",
+                "/assets/services/gigantografia/proyecto-4.webp",
+                "/assets/services/gigantografia/proyecto-5.webp",
+            ],
+        },
+    ];
+
+    return services.map((service) => ({
+        params: { slug: service.slug },
+    }));
+}
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+    <div class="stack gap-20">
+        <main class="wrapper stack gap-4">
+            <Hero
+                title={service.title}
+                tagline={service.description}
+                align="start"
+            />
+
+            <!-- Carousel 3D de proyectos -->
+            <section class="service-gallery">
+                <Carousel3D
+                    images={service.images}
+                    serviceSlug={service.slug}
+                />
+            </section>
+        </main>
+    </div>
+</BaseLayout>
+
+<style>
+    .service-gallery {
+        padding: 1rem 0;
+    }
+</style>

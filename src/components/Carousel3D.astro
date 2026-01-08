@@ -1,0 +1,474 @@
+---
+interface Props {
+    images: string[];
+    serviceSlug: string;
+}
+
+const { images, serviceSlug } = Astro.props;
+---
+
+<div class="carousel-3d-container">
+    <div class="carousel-3d" data-carousel="carousel-3d">
+        <div class="carousel-3d-wrapper">
+            {
+                images.map((image, index) => (
+                    <div class="carousel-3d-item" data-index={index}>
+                        <div class="image-wrapper">
+                            <img
+                                src={image}
+                                alt={`Proyecto ${index + 1}`}
+                                loading="lazy"
+                            />
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+
+    <div class="carousel-controls">
+        <button
+            class="carousel-btn carousel-btn-prev"
+            data-action="prev"
+            aria-label="Anterior"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </button>
+        <button
+            class="carousel-btn carousel-btn-next"
+            data-action="next"
+            aria-label="Siguiente"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </button>
+    </div>
+
+    <div class="carousel-indicators">
+        {
+            images.map((_, index) => (
+                <button
+                    class={`carousel-indicator ${index === 0 ? "active" : ""}`}
+                    data-index={index}
+                    aria-label={`Ir a imagen ${index + 1}`}
+                />
+            ))
+        }
+    </div>
+</div>
+
+<style>
+    .carousel-3d-container {
+        position: relative;
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+
+    .carousel-3d {
+        position: relative;
+        width: 100%;
+        height: 550px;
+        perspective: 1600px;
+        overflow: visible;
+    }
+
+    @media (max-width: 768px) {
+        .carousel-3d {
+            height: 400px;
+            perspective: 1000px;
+        }
+    }
+
+    .carousel-3d-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+    }
+
+    .carousel-3d-item {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 65%;
+        max-width: 700px;
+        height: 85%;
+        transform-origin: center center;
+        transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+        transform-style: preserve-3d;
+    }
+
+    @media (max-width: 768px) {
+        .carousel-3d-item {
+            width: 80%;
+            height: 80%;
+        }
+    }
+
+    .image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        /* Borde negro grueso como en la imagen de referencia */
+        border: 12px solid #1a1a1a;
+        box-shadow:
+            0 30px 60px -12px rgba(0, 0, 0, 0.5),
+            0 18px 36px -18px rgba(0, 0, 0, 0.4),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        background: #1a1a1a;
+        transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    @media (max-width: 768px) {
+        .image-wrapper {
+            border: 8px solid #1a1a1a;
+        }
+    }
+
+    .image-wrapper::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.08) 0%,
+            rgba(255, 255, 255, 0) 50%,
+            rgba(0, 0, 0, 0.1) 100%
+        );
+        pointer-events: none;
+    }
+
+    .image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* Carousel Controls */
+    .carousel-controls {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: space-between;
+        padding: 0 1rem;
+        pointer-events: none;
+        z-index: 10;
+    }
+
+    .carousel-btn {
+        pointer-events: auto;
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+        .carousel-controls {
+            display: none;
+        }
+    }
+
+    .carousel-btn:hover {
+        background: var(--accent-regular);
+        border-color: var(--accent-regular);
+        transform: scale(1.1);
+        box-shadow: 0 8px 24px rgba(118, 17, 166, 0.4);
+    }
+
+    .carousel-btn:active {
+        transform: scale(0.95);
+    }
+
+    /* Carousel Indicators */
+    .carousel-indicators {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-top: 3rem;
+        z-index: 10;
+        position: relative;
+    }
+
+    .carousel-indicator {
+        width: 0.75rem;
+        height: 0.75rem;
+        border-radius: 50%;
+        background: var(--gray-600);
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 0;
+    }
+
+    .carousel-indicator:hover {
+        background: var(--gray-400);
+        transform: scale(1.2);
+    }
+
+    .carousel-indicator.active {
+        background: var(--accent-regular);
+        width: 2rem;
+        border-radius: 0.375rem;
+    }
+</style>
+
+<script>
+    class Carousel3D {
+        private container: HTMLElement;
+        private wrapper: HTMLElement;
+        private items: NodeListOf<HTMLElement>;
+        private currentIndex: number = 0;
+        private totalItems: number;
+        private autoplayInterval: number | null = null;
+
+        constructor(container: HTMLElement) {
+            this.container = container;
+            this.wrapper = container.querySelector(
+                ".carousel-3d-wrapper",
+            ) as HTMLElement;
+            this.items = container.querySelectorAll(".carousel-3d-item");
+            this.totalItems = this.items.length;
+
+            this.init();
+            this.setupTouchEvents();
+            this.setupEventListeners();
+            this.startAutoplay();
+        }
+
+        private init(): void {
+            this.updateCarousel();
+            window.addEventListener("resize", () => {
+                this.updateCarousel();
+            });
+        }
+
+        private updateCarousel(): void {
+            const isMobile = window.innerWidth <= 768;
+            const spacing = isMobile ? 180 : 220; // Espaciado horizontal entre tarjetas
+            const depthSpacing = isMobile ? 100 : 150; // Profundidad en Z
+            const rotationAngle = isMobile ? 35 : 45; // Ángulo de rotación
+
+            this.items.forEach((item, index) => {
+                const position = index - this.currentIndex;
+
+                // Calcular transformaciones basadas en la posición relativa
+                let translateX = position * spacing;
+                let translateZ = -Math.abs(position) * depthSpacing;
+                let rotateY = 0;
+                let scale = 1;
+                let zIndex = 10;
+
+                if (position === 0) {
+                    // Imagen central (al frente)
+                    translateX = 0;
+                    translateZ = 0;
+                    rotateY = 0;
+                    scale = 1;
+                    zIndex = 100;
+                } else if (position > 0) {
+                    // Imágenes a la derecha
+                    rotateY = -rotationAngle;
+                    scale = 0.85 - Math.abs(position) * 0.1;
+                    zIndex = 10 - position;
+                } else {
+                    // Imágenes a la izquierda
+                    rotateY = rotationAngle;
+                    scale = 0.85 - Math.abs(position) * 0.1;
+                    zIndex = 10 + position;
+                }
+
+                // Limitar escala mínima
+                scale = Math.max(scale, 0.6);
+
+                // Aplicar transformación tipo coverflow
+                item.style.transform = `
+          translate(-50%, -50%)
+          translateX(${translateX}px)
+          translateZ(${translateZ}px)
+          rotateY(${rotateY}deg)
+          scale(${scale})
+        `;
+
+                item.style.zIndex = zIndex.toString();
+
+                // Todas las imágenes son opacas
+                item.style.opacity = "1";
+
+                // Ocultar imágenes muy alejadas
+                if (Math.abs(position) > 2) {
+                    item.style.opacity = "0";
+                    item.style.pointerEvents = "none";
+                } else {
+                    item.style.pointerEvents = "auto";
+                }
+            });
+
+            this.updateIndicators();
+        }
+
+        private updateIndicators(): void {
+            const indicators = this.container.querySelectorAll(
+                ".carousel-indicator",
+            );
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle(
+                    "active",
+                    index === this.currentIndex,
+                );
+            });
+        }
+
+        private next(): void {
+            this.currentIndex = (this.currentIndex + 1) % this.totalItems;
+            this.updateCarousel();
+            this.resetAutoplay();
+        }
+
+        private prev(): void {
+            this.currentIndex =
+                (this.currentIndex - 1 + this.totalItems) % this.totalItems;
+            this.updateCarousel();
+            this.resetAutoplay();
+        }
+
+        private goTo(index: number): void {
+            this.currentIndex = index;
+            this.updateCarousel();
+            this.resetAutoplay();
+        }
+
+        private setupEventListeners(): void {
+            const prevBtn = this.container.querySelector(
+                '[data-action="prev"]',
+            );
+            const nextBtn = this.container.querySelector(
+                '[data-action="next"]',
+            );
+            const indicators = this.container.querySelectorAll(
+                ".carousel-indicator",
+            );
+
+            prevBtn?.addEventListener("click", () => this.prev());
+            nextBtn?.addEventListener("click", () => this.next());
+
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener("click", () =>
+                    this.goTo(index as number),
+                );
+            });
+
+            // Keyboard navigation
+            this.container.addEventListener("keydown", (e) => {
+                if (e.key === "ArrowLeft") this.prev();
+                if (e.key === "ArrowRight") this.next();
+            });
+        }
+
+        private startAutoplay(): void {
+            this.autoplayInterval = window.setInterval(() => {
+                this.next();
+            }, 5000);
+        }
+
+        private resetAutoplay(): void {
+            if (this.autoplayInterval) {
+                clearInterval(this.autoplayInterval);
+                this.startAutoplay();
+            }
+        }
+
+        private setupTouchEvents(): void {
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const minSwipeDistance = 50;
+
+            this.wrapper.addEventListener(
+                "touchstart",
+                (e: TouchEvent) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                },
+                { passive: true },
+            );
+
+            this.wrapper.addEventListener(
+                "touchend",
+                (e: TouchEvent) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    this.handleSwipe(touchStartX, touchEndX, minSwipeDistance);
+                },
+                { passive: true },
+            );
+        }
+
+        private handleSwipe(
+            startX: number,
+            endX: number,
+            minDistance: number,
+        ): void {
+            const distance = endX - startX;
+
+            if (Math.abs(distance) < minDistance) {
+                return;
+            }
+
+            if (distance > 0) {
+                // Swipe right - go to previous
+                this.prev();
+            } else {
+                // Swipe left - go to next
+                this.next();
+            }
+        }
+    }
+
+    // Initialize all carousels on the page
+    document.addEventListener("DOMContentLoaded", () => {
+        const carousels = document.querySelectorAll(
+            '[data-carousel="carousel-3d"]',
+        );
+        carousels.forEach((carousel) => {
+            new Carousel3D(carousel.parentElement as HTMLElement);
+        });
+    });
+</script>
