@@ -2,13 +2,16 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Hero from "../../components/Hero.astro";
 import Carousel3D from "../../components/Carousel3D.astro";
+import WorkTypes from "../../components/WorkTypes.astro";
 
-// Define all services with their slugs and images
+// Define all services with their slugs, images, and work types
 const services = [
     {
         title: "Creación de Marca",
         slug: "creacion-de-marca",
-        description: "Desarrollo de identidad visual y estrategia de marca",
+        subtitle: "Desarrollo de identidad visual y estrategia de marca",
+        description:
+            "En Estudio Creativo Renova desarrollamos marcas sólidas, auténticas y memorables. Creamos identidades visuales estratégicas que reflejan la esencia de tu negocio y conectan con tu público objetivo. Desde el concepto hasta el diseño final, trabajamos para que tu marca se diferencie, comunique con claridad y tenga coherencia en todos sus canales.",
         images: [
             "/assets/services/branding/proyecto-1.webp",
             "/assets/services/branding/proyecto-2.webp",
@@ -16,11 +19,39 @@ const services = [
             "/assets/services/branding/proyecto-4.webp",
             "/assets/services/branding/proyecto-5.webp",
         ],
+        workTypes: [
+            {
+                title: "Logotipo",
+                description:
+                    "Diseño de logotipos únicos y versátiles que representan la esencia de tu marca.",
+                icon: "palette",
+            },
+            {
+                title: "Manual de Marca",
+                description:
+                    "Documentación completa con lineamientos de uso de tu identidad visual.",
+                icon: "file-text",
+            },
+            {
+                title: "Paleta de Colores",
+                description:
+                    "Selección estratégica de colores que transmiten los valores de tu marca.",
+                icon: "paint-brush",
+            },
+            {
+                title: "Tipografía",
+                description:
+                    "Elección de fuentes que complementan y refuerzan tu identidad visual.",
+                icon: "pencil-line",
+            },
+        ],
     },
     {
         title: "Diseño de Papelería Corporativa",
         slug: "diseno-de-papeleria-corporativa",
-        description: "Diseño profesional de material corporativo",
+        subtitle: "Diseño profesional de material corporativo",
+        description:
+            "Diseñamos papelería corporativa que proyecta profesionalismo y refuerza la identidad de tu marca. Desde tarjetas de presentación, hojas membretadas, sobres y facturas, cada pieza es creada con coherencia visual y cuidado en los detalles, transmitiendo confianza y seriedad en cada interacción con tus clientes.",
         images: [
             "/assets/services/stationery/proyecto-1.webp",
             "/assets/services/stationery/proyecto-2.webp",
@@ -28,11 +59,39 @@ const services = [
             "/assets/services/stationery/proyecto-4.webp",
             "/assets/services/stationery/proyecto-5.webp",
         ],
+        workTypes: [
+            {
+                title: "Tarjetas de Presentación",
+                description:
+                    "Diseño de tarjetas elegantes que causan una primera impresión memorable.",
+                icon: "cards",
+            },
+            {
+                title: "Hojas Membretadas",
+                description:
+                    "Papelería oficial con tu identidad para comunicaciones formales.",
+                icon: "file-text",
+            },
+            {
+                title: "Sobres y Carpetas",
+                description:
+                    "Material de correspondencia y organización con tu branding.",
+                icon: "package",
+            },
+            {
+                title: "Facturas y Recibos",
+                description:
+                    "Documentos comerciales profesionales con diseño coherente.",
+                icon: "printer",
+            },
+        ],
     },
     {
         title: "Diseño de Empaques",
         slug: "diseno-de-empaques",
-        description: "Soluciones creativas para packaging",
+        subtitle: "Soluciones creativas para packaging",
+        description:
+            "Creamos diseños de empaques atractivos, funcionales y alineados a la identidad de tu marca. Nuestro enfoque combina estética, comunicación y experiencia del cliente, logrando que tus productos destaquen en el punto de venta y transmitan calidad, confianza y valor.",
         images: [
             "/assets/services/packaging/proyecto-1.webp",
             "/assets/services/packaging/proyecto-2.webp",
@@ -40,11 +99,39 @@ const services = [
             "/assets/services/packaging/proyecto-4.webp",
             "/assets/services/packaging/proyecto-5.webp",
         ],
+        workTypes: [
+            {
+                title: "Cajas y Envases",
+                description:
+                    "Diseño de empaques primarios que protegen y presentan tu producto.",
+                icon: "package",
+            },
+            {
+                title: "Etiquetas",
+                description:
+                    "Diseño de etiquetas informativas y atractivas para tus productos.",
+                icon: "file-text",
+            },
+            {
+                title: "Bolsas Personalizadas",
+                description:
+                    "Bolsas con tu marca para una experiencia de compra memorable.",
+                icon: "package",
+            },
+            {
+                title: "Packaging Premium",
+                description:
+                    "Empaques de lujo para productos que requieren una presentación especial.",
+                icon: "star",
+            },
+        ],
     },
     {
         title: "Social Media",
         slug: "social-media",
-        description: "Gestión y diseño para redes sociales",
+        subtitle: "Gestión y diseño para redes sociales",
+        description:
+            "Gestionamos y diseñamos contenido estratégico para redes sociales que conecta con tu audiencia y fortalece tu marca. Creamos piezas visuales atractivas para aumentar tu visibilidad, interacción y presencia digital.",
         images: [
             "/assets/services/social-media/proyecto-1.webp",
             "/assets/services/social-media/proyecto-2.webp",
@@ -52,11 +139,39 @@ const services = [
             "/assets/services/social-media/proyecto-4.webp",
             "/assets/services/social-media/proyecto-5.webp",
         ],
+        workTypes: [
+            {
+                title: "Posts para Feed",
+                description:
+                    "Diseño de publicaciones atractivas y coherentes con tu identidad.",
+                icon: "image",
+            },
+            {
+                title: "Stories y Reels",
+                description:
+                    "Contenido dinámico y vertical para historias y videos cortos.",
+                icon: "instagram-logo",
+            },
+            {
+                title: "Plantillas de Contenido",
+                description:
+                    "Templates personalizados para mantener coherencia en tus publicaciones.",
+                icon: "cards",
+            },
+            {
+                title: "Portadas y Highlights",
+                description:
+                    "Diseño de portadas para perfiles y destacados de historias.",
+                icon: "star",
+            },
+        ],
     },
     {
         title: "Desarrollo Web",
         slug: "desarrollo-web",
-        description: "Sitios web modernos y responsivos",
+        subtitle: "Sitios web modernos y responsivos",
+        description:
+            "Diseñamos y desarrollamos sitios web modernos, funcionales y responsivos, adaptados a todo tipo de dispositivos. Creamos páginas web que representan fielmente tu marca, comunican tus servicios de manera clara y están pensadas para mejorar la experiencia del usuario y atraer nuevos clientes.",
         images: [
             "/assets/services/web-dev/proyecto-1.webp",
             "/assets/services/web-dev/proyecto-2.webp",
@@ -64,17 +179,71 @@ const services = [
             "/assets/services/web-dev/proyecto-4.webp",
             "/assets/services/web-dev/proyecto-5.webp",
         ],
+        workTypes: [
+            {
+                title: "Landing Pages",
+                description:
+                    "Páginas de aterrizaje optimizadas para convertir visitantes en clientes.",
+                icon: "rocket-launch",
+            },
+            {
+                title: "Sitios Web Corporativos",
+                description:
+                    "Páginas web completas que presentan tu empresa profesionalmente.",
+                icon: "globe",
+            },
+            {
+                title: "E-commerce",
+                description:
+                    "Tiendas en línea funcionales para vender tus productos digitalmente.",
+                icon: "desktop",
+            },
+            {
+                title: "Portafolios Digitales",
+                description:
+                    "Sitios web para mostrar tu trabajo y proyectos de manera visual.",
+                icon: "image",
+            },
+        ],
     },
     {
         title: "Gigantografía",
         slug: "gigantografia",
-        description: "Impresión de gran formato",
+        subtitle: "Impresión de gran formato",
+        description:
+            "Diseñamos e imprimimos gigantografías de alto impacto visual para publicidad exterior e interior. Creamos piezas llamativas, claras y estratégicas que captan la atención de tu público y refuerzan tu mensaje de marca en banners, lonas, vallas y otros formatos de gran tamaño.",
         images: [
             "/assets/services/gigantografia/proyecto-1.webp",
             "/assets/services/gigantografia/proyecto-2.webp",
             "/assets/services/gigantografia/proyecto-3.webp",
             "/assets/services/gigantografia/proyecto-4.webp",
             "/assets/services/gigantografia/proyecto-5.webp",
+        ],
+        workTypes: [
+            {
+                title: "Banners y Lonas",
+                description:
+                    "Impresiones de gran formato para publicidad exterior e interior.",
+                icon: "megaphone",
+            },
+            {
+                title: "Vallas Publicitarias",
+                description:
+                    "Diseño e impresión para anuncios de alto impacto visual.",
+                icon: "image",
+            },
+            {
+                title: "Señalética",
+                description:
+                    "Diseño de señales informativas y de orientación para espacios.",
+                icon: "arrow-right",
+            },
+            {
+                title: "Roll-ups y Pop-ups",
+                description:
+                    "Displays portátiles para eventos, ferias y presentaciones.",
+                icon: "printer",
+            },
         ],
     },
 ];
@@ -92,88 +261,18 @@ if (!service) {
 
 // Set page metadata
 const pageTitle = `${service.title} | RENOVA`;
-const pageDescription = service.description;
+const pageDescription = service.subtitle;
 
 // This function is required for static site generation
 export function getStaticPaths() {
-    const services = [
-        {
-            title: "Creación de Marca",
-            slug: "creacion-de-marca",
-            description: "Desarrollo de identidad visual y estrategia de marca",
-            images: [
-                "/assets/services/branding/proyecto-1.webp",
-                "/assets/services/branding/proyecto-2.webp",
-                "/assets/services/branding/proyecto-3.webp",
-                "/assets/services/branding/proyecto-4.webp",
-                "/assets/services/branding/proyecto-5.webp",
-            ],
-        },
-        {
-            title: "Diseño de Papelería Corporativa",
-            slug: "diseno-de-papeleria-corporativa",
-            description: "Diseño profesional de material corporativo",
-            images: [
-                "/assets/services/stationery/proyecto-1.webp",
-                "/assets/services/stationery/proyecto-2.webp",
-                "/assets/services/stationery/proyecto-3.webp",
-                "/assets/services/stationery/proyecto-4.webp",
-                "/assets/services/stationery/proyecto-5.webp",
-            ],
-        },
-        {
-            title: "Diseño de Empaques",
-            slug: "diseno-de-empaques",
-            description: "Soluciones creativas para packaging",
-            images: [
-                "/assets/services/packaging/proyecto-1.webp",
-                "/assets/services/packaging/proyecto-2.webp",
-                "/assets/services/packaging/proyecto-3.webp",
-                "/assets/services/packaging/proyecto-4.webp",
-                "/assets/services/packaging/proyecto-5.webp",
-            ],
-        },
-        {
-            title: "Social Media",
-            slug: "social-media",
-            description: "Gestión y diseño para redes sociales",
-            images: [
-                "/assets/services/social-media/proyecto-1.webp",
-                "/assets/services/social-media/proyecto-2.webp",
-                "/assets/services/social-media/proyecto-3.webp",
-                "/assets/services/social-media/proyecto-4.webp",
-                "/assets/services/social-media/proyecto-5.webp",
-            ],
-        },
-        {
-            title: "Desarrollo Web",
-            slug: "desarrollo-web",
-            description: "Sitios web modernos y responsivos",
-            images: [
-                "/assets/services/web-dev/proyecto-1.webp",
-                "/assets/services/web-dev/proyecto-2.webp",
-                "/assets/services/web-dev/proyecto-3.webp",
-                "/assets/services/web-dev/proyecto-4.webp",
-                "/assets/services/web-dev/proyecto-5.webp",
-            ],
-        },
-        {
-            title: "Gigantografía",
-            slug: "gigantografia",
-            description: "Impresión de gran formato",
-            images: [
-                "/assets/services/gigantografia/proyecto-1.webp",
-                "/assets/services/gigantografia/proyecto-2.webp",
-                "/assets/services/gigantografia/proyecto-3.webp",
-                "/assets/services/gigantografia/proyecto-4.webp",
-                "/assets/services/gigantografia/proyecto-5.webp",
-            ],
-        },
+    return [
+        { params: { slug: "creacion-de-marca" } },
+        { params: { slug: "diseno-de-papeleria-corporativa" } },
+        { params: { slug: "diseno-de-empaques" } },
+        { params: { slug: "social-media" } },
+        { params: { slug: "desarrollo-web" } },
+        { params: { slug: "gigantografia" } },
     ];
-
-    return services.map((service) => ({
-        params: { slug: service.slug },
-    }));
 }
 ---
 
@@ -182,7 +281,7 @@ export function getStaticPaths() {
         <main class="wrapper stack gap-4">
             <Hero
                 title={service.title}
-                tagline={service.description}
+                tagline={service.subtitle}
                 align="start"
             />
 
@@ -193,6 +292,17 @@ export function getStaticPaths() {
                     serviceSlug={service.slug}
                 />
             </section>
+
+            <!-- Descripcion del servicio -->
+            <section class="service-description">
+                <div class="stack gap-4">
+                    <h2 class="h2">Descripción del servicio</h2>
+                    <p>{service.description}</p>
+                </div>
+            </section>
+
+            <!-- Tipos de trabajo -->
+            <WorkTypes workTypes={service.workTypes} />
         </main>
     </div>
 </BaseLayout>
@@ -200,5 +310,21 @@ export function getStaticPaths() {
 <style>
     .service-gallery {
         padding: 1rem 0;
+    }
+
+    .service-description {
+        text-align: center;
+        max-width: 80ch;
+        margin-inline: auto;
+    }
+
+    .service-description h2 {
+        font-size: var(--text-xl);
+    }
+
+    @media (min-width: 50em) {
+        .service-description h2 {
+            font-size: var(--text-3xl);
+        }
     }
 </style>

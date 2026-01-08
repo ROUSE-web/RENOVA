@@ -1,0 +1,238 @@
+---
+import Icon from "./Icon.astro";
+
+interface WorkType {
+    title: string;
+    description: string;
+    icon: string;
+}
+
+interface Props {
+    workTypes: WorkType[];
+}
+
+const { workTypes } = Astro.props;
+---
+
+<section class="work-types-section">
+    <h2 class="section-title">Tipos de Trabajo</h2>
+    <div class="work-types-grid">
+        {
+            workTypes.map((work) => (
+                <article class="work-type-card">
+                    <div class="card-icon">
+                        <Icon icon={work.icon as any} size="2rem" gradient />
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">{work.title}</h3>
+                        <p class="card-description">{work.description}</p>
+                    </div>
+                    <a
+                        href={`https://wa.me/59175923339?text=Hola, me interesa cotizar: ${encodeURIComponent(work.title)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="quote-btn"
+                    >
+                        <Icon icon="whatsapp-logo" size="1.2em" />
+                        <span>Cotizar</span>
+                    </a>
+                </article>
+            ))
+        }
+    </div>
+</section>
+
+<style>
+    .work-types-section {
+        padding: 3rem 0;
+    }
+
+    .section-title {
+        font-size: var(--text-xl);
+        font-weight: 700;
+        color: var(--gray-100);
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: 50em) {
+        .section-title {
+            font-size: var(--text-3xl);
+        }
+    }
+
+    .work-types-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    @media (min-width: 600px) {
+        .work-types-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+    }
+
+    @media (min-width: 1000px) {
+        .work-types-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    .work-type-card {
+        position: relative;
+        background: var(--gradient-subtle);
+        border: 1px solid var(--gray-800);
+        border-radius: 1.25rem;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        overflow: hidden;
+    }
+
+    .work-type-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            135deg,
+            transparent 0%,
+            var(--accent-overlay) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+
+    .work-type-card:hover {
+        transform: translateY(-6px);
+        border-color: var(--accent-regular);
+        box-shadow:
+            0 20px 40px -15px rgba(118, 17, 166, 0.2),
+            0 8px 20px -8px rgba(0, 0, 0, 0.15);
+    }
+
+    .work-type-card:hover::before {
+        opacity: 1;
+    }
+
+    .card-icon {
+        position: relative;
+        z-index: 1;
+        width: 3.5rem;
+        height: 3.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--accent-subtle-overlay);
+        border-radius: 0.875rem;
+        color: var(--accent-regular);
+        transition: all 0.4s ease;
+    }
+
+    .work-type-card:hover .card-icon {
+        background: var(--accent-regular);
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .card-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        flex: 1;
+    }
+
+    .card-title {
+        font-size: var(--text-lg);
+        font-weight: 600;
+        color: var(--gray-100);
+        line-height: 1.3;
+        margin: 0;
+    }
+
+    .card-description {
+        font-size: var(--text-sm);
+        color: var(--gray-400);
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    @media (min-width: 50em) {
+        .work-type-card {
+            padding: 2rem;
+        }
+
+        .card-title {
+            font-size: var(--text-xl);
+        }
+
+        .card-description {
+            font-size: var(--text-base);
+        }
+    }
+
+    .quote-btn {
+        position: relative;
+        z-index: 10;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.625rem;
+        margin-top: 1rem;
+        padding: 0.875rem 1.5rem;
+        background: var(--gradient-accent);
+        color: var(--accent-text-over);
+        border: none;
+        border-radius: 999rem;
+        font-size: var(--text-sm);
+        font-weight: 600;
+        font-family: var(--font-brand);
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        box-shadow:
+            0 4px 15px rgba(118, 17, 166, 0.35),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .quote-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            135deg,
+            var(--accent-regular) 0%,
+            var(--accent-dark) 100%
+        );
+        border-radius: 999rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .quote-btn:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow:
+            0 8px 25px rgba(118, 17, 166, 0.45),
+            inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .quote-btn:hover::before {
+        opacity: 1;
+    }
+
+    .quote-btn span,
+    .quote-btn :global(svg) {
+        position: relative;
+        z-index: 1;
+    }
+
+    .quote-btn:active {
+        transform: translateY(-1px) scale(1);
+    }
+</style>
