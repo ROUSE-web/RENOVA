@@ -1,0 +1,796 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import Icon from "../components/Icon.astro";
+---
+
+<BaseLayout
+    title="Contacto | RENOVA"
+    description="Contáctanos para hacer realidad tu proyecto. Estamos listos para ayudarte a crear la identidad visual de tu marca."
+>
+    <div class="stack gap-20">
+        <main class="wrapper contact-page">
+            <Hero
+                title="Contáctanos"
+                tagline="¿Tienes un proyecto en mente? Estamos listos para hacerlo realidad"
+                align="center"
+            />
+
+            <div class="contact-container">
+                <!-- Información de Contacto -->
+                <section class="contact-info" data-animate="fade-up">
+                    <h2 class="info-title">Hablemos de tu proyecto</h2>
+                    <p class="info-subtitle">
+                        Elige el canal que prefieras para comunicarte con
+                        nosotros. Responderemos lo antes posible.
+                    </p>
+
+                    <div class="contact-cards">
+                        <!-- WhatsApp -->
+                        <a
+                            href="https://wa.me/59175923339?text=Hola, me gustaría obtener información sobre sus servicios"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="contact-card whatsapp-card"
+                            data-animate="fade-up"
+                            data-delay="1"
+                        >
+                            <div class="card-icon whatsapp-icon">
+                                <Icon icon="whatsapp-logo" size="2rem" />
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">WhatsApp</h3>
+                                <p class="card-text">+591 75923339</p>
+                                <span class="card-action"
+                                    >Escríbenos ahora →</span
+                                >
+                            </div>
+                        </a>
+
+                        <!-- Email -->
+                        <a
+                            href="mailto:renovaestudiocreativo@gmail.com"
+                            class="contact-card email-card"
+                            data-animate="fade-up"
+                            data-delay="2"
+                        >
+                            <div class="card-icon email-icon">
+                                <Icon icon="paper-plane-tilt" size="2rem" />
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">Email</h3>
+                                <p class="card-text">
+                                    renovaestudiocreativo@gmail.com
+                                </p>
+                                <span class="card-action">Enviar correo →</span>
+                            </div>
+                        </a>
+
+                        <!-- Instagram -->
+                        <a
+                            href="https://www.instagram.com/renova_estudiodesing/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="contact-card instagram-card"
+                            data-animate="fade-up"
+                            data-delay="3"
+                        >
+                            <div class="card-icon instagram-icon">
+                                <Icon icon="instagram-logo" size="2rem" />
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">Instagram</h3>
+                                <p class="card-text">@renova_estudiodesing</p>
+                                <span class="card-action">Síguenos →</span>
+                            </div>
+                        </a>
+
+                        <!-- Facebook -->
+                        <a
+                            href="https://www.facebook.com/share/14mATuywiF/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="contact-card facebook-card"
+                            data-animate="fade-up"
+                            data-delay="4"
+                        >
+                            <div class="card-icon facebook-icon">
+                                <Icon icon="facebook-logo" size="2rem" />
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">Facebook</h3>
+                                <p class="card-text">Estudio Creativo Renova</p>
+                                <span class="card-action">Visítanos →</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Horario de Atención -->
+                    <div
+                        class="schedule-card"
+                        data-animate="fade-up"
+                        data-delay="5"
+                    >
+                        <div class="schedule-header">
+                            <div class="schedule-icon">
+                                <Icon icon="sun" size="1.5rem" />
+                            </div>
+                            <h3 class="schedule-title">Horario de Atención</h3>
+                        </div>
+                        <div class="schedule-content">
+                            <div class="schedule-row">
+                                <span class="schedule-day">Lunes a Viernes</span
+                                >
+                                <div class="schedule-times">
+                                    <span class="schedule-time"
+                                        >8:30 - 12:30</span
+                                    >
+                                    <span class="schedule-divider">/</span>
+                                    <span class="schedule-time"
+                                        >14:30 - 18:30</span
+                                    >
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <span class="schedule-day">Sábados</span>
+                                <span class="schedule-time">9:00 - 12:00</span>
+                            </div>
+                            <div class="schedule-row closed">
+                                <span class="schedule-day">Domingos</span>
+                                <span class="schedule-time">Cerrado</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Formulario de Contacto -->
+                <section class="contact-form-section" data-animate="fade-up">
+                    <div class="form-header">
+                        <h2 class="form-title">Envíanos un mensaje</h2>
+                        <p class="form-subtitle">
+                            Completa el formulario y te contactaremos pronto
+                        </p>
+                    </div>
+
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label"
+                                >Nombre completo</label
+                            >
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                class="form-input"
+                                placeholder="Tu nombre"
+                                required
+                            />
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email" class="form-label"
+                                    >Correo electrónico</label
+                                >
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    class="form-input"
+                                    placeholder="tu@email.com"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="form-label"
+                                    >Teléfono</label
+                                >
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    class="form-input"
+                                    placeholder="+591 12345678"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service" class="form-label"
+                                >¿Qué servicio te interesa?</label
+                            >
+                            <select
+                                id="service"
+                                name="service"
+                                class="form-input form-select"
+                            >
+                                <option value="">Selecciona un servicio</option>
+                                <option value="branding"
+                                    >Creación de Marca</option
+                                >
+                                <option value="stationery"
+                                    >Papelería Corporativa</option
+                                >
+                                <option value="packaging"
+                                    >Diseño de Empaques</option
+                                >
+                                <option value="social-media"
+                                    >Social Media</option
+                                >
+                                <option value="web">Desarrollo Web</option>
+                                <option value="gigantografia"
+                                    >Gigantografía</option
+                                >
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label"
+                                >Cuéntanos sobre tu proyecto</label
+                            >
+                            <textarea
+                                id="message"
+                                name="message"
+                                class="form-input form-textarea"
+                                placeholder="Describe brevemente lo que necesitas..."
+                                rows="5"
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <span>Enviar mensaje</span>
+                            <Icon icon="paper-plane-tilt" size="1.25rem" />
+                        </button>
+                    </form>
+                </section>
+            </div>
+
+            <!-- CTA Final -->
+            <section class="cta-section" data-animate="fade-up">
+                <div class="cta-content">
+                    <h2 class="cta-title">
+                        ¿Prefieres una respuesta inmediata?
+                    </h2>
+                    <p class="cta-text">
+                        Escríbenos por WhatsApp y te atenderemos al instante
+                    </p>
+                    <a
+                        href="https://wa.me/59175923339?text=Hola, me gustaría obtener información sobre sus servicios"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="cta-btn"
+                    >
+                        <Icon icon="whatsapp-logo" size="1.5rem" />
+                        <span>Chatear ahora</span>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+</BaseLayout>
+
+<style>
+    .contact-page {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+    }
+
+    .contact-container {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+    }
+
+    @media (min-width: 1000px) {
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+    }
+
+    /* Contact Info Section */
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .info-title {
+        font-size: var(--text-2xl);
+        font-weight: 700;
+        color: var(--gray-0);
+        margin: 0;
+    }
+
+    .info-subtitle {
+        font-size: var(--text-md);
+        color: var(--gray-400);
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .contact-cards {
+        display: grid;
+        gap: 1rem;
+    }
+
+    @media (min-width: 600px) and (max-width: 999px) {
+        .contact-cards {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .contact-card {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        padding: 1.25rem;
+        background: var(--gradient-subtle);
+        border: 1px solid var(--gray-800);
+        border-radius: 1rem;
+        text-decoration: none;
+        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .contact-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            135deg,
+            transparent 50%,
+            var(--accent-overlay) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--accent-regular);
+        box-shadow: 0 12px 30px -10px rgba(118, 17, 166, 0.25);
+    }
+
+    .contact-card:hover::before {
+        opacity: 1;
+    }
+
+    .card-icon {
+        position: relative;
+        z-index: 1;
+        width: 3.5rem;
+        height: 3.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.875rem;
+        color: white;
+        flex-shrink: 0;
+        transition: all 0.4s ease;
+    }
+
+    .whatsapp-icon {
+        background: linear-gradient(135deg, #25d366, #128c7e);
+    }
+    .email-icon {
+        background: var(--gradient-accent);
+    }
+    .instagram-icon {
+        background: linear-gradient(
+            135deg,
+            #f09433,
+            #e6683c,
+            #dc2743,
+            #cc2366,
+            #bc1888
+        );
+    }
+    .facebook-icon {
+        background: linear-gradient(135deg, #1877f2, #0d5bbf);
+    }
+
+    .contact-card:hover .card-icon {
+        transform: scale(1.1) rotate(-5deg);
+    }
+
+    .card-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .card-title {
+        font-size: var(--text-lg);
+        font-weight: 600;
+        color: var(--gray-0);
+        margin: 0;
+    }
+
+    .card-text {
+        font-size: var(--text-sm);
+        color: var(--gray-400);
+        margin: 0;
+    }
+
+    .card-action {
+        font-size: var(--text-sm);
+        font-weight: 500;
+        color: var(--accent-regular);
+        margin-top: 0.25rem;
+        transition: color 0.3s ease;
+    }
+
+    .contact-card:hover .card-action {
+        color: var(--accent-dark);
+    }
+
+    /* Schedule Card */
+    .schedule-card {
+        background: var(--gradient-subtle);
+        border: 1px solid var(--gray-800);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .schedule-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--gray-800);
+    }
+
+    .schedule-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--accent-subtle-overlay);
+        border-radius: 0.625rem;
+        color: var(--accent-regular);
+    }
+
+    .schedule-title {
+        font-size: var(--text-lg);
+        font-weight: 600;
+        color: var(--gray-0);
+        margin: 0;
+    }
+
+    .schedule-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .schedule-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .schedule-day {
+        font-size: var(--text-sm);
+        font-weight: 500;
+        color: var(--gray-100);
+    }
+
+    .schedule-times {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .schedule-time {
+        font-size: var(--text-sm);
+        font-weight: 600;
+        color: var(--accent-dark);
+        background: var(--accent-subtle-overlay);
+        padding: 0.25rem 0.625rem;
+        border-radius: 0.375rem;
+    }
+
+    .schedule-divider {
+        color: var(--gray-500);
+        font-size: var(--text-sm);
+    }
+
+    .schedule-row.closed .schedule-time {
+        background: rgba(239, 68, 68, 0.15);
+        color: #ef4444;
+    }
+
+    [data-delay="5"] {
+        transition-delay: 0.5s;
+    }
+
+    /* Contact Form Section */
+    .contact-form-section {
+        background: var(--gradient-subtle);
+        border: 1px solid var(--gray-800);
+        border-radius: 1.5rem;
+        padding: 2rem;
+    }
+
+    @media (min-width: 50em) {
+        .contact-form-section {
+            padding: 2.5rem;
+        }
+    }
+
+    .form-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .form-title {
+        font-size: var(--text-2xl);
+        font-weight: 700;
+        color: var(--gray-0);
+        margin: 0 0 0.5rem 0;
+    }
+
+    .form-subtitle {
+        font-size: var(--text-md);
+        color: var(--gray-400);
+        margin: 0;
+    }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .form-row {
+        display: grid;
+        gap: 1.25rem;
+    }
+
+    @media (min-width: 500px) {
+        .form-row {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .form-label {
+        font-size: var(--text-sm);
+        font-weight: 500;
+        color: var(--gray-200);
+    }
+
+    .form-input {
+        padding: 0.875rem 1rem;
+        background: var(--gray-900);
+        border: 1px solid var(--gray-700);
+        border-radius: 0.75rem;
+        color: var(--gray-0);
+        font-size: var(--text-base);
+        font-family: inherit;
+        transition: all 0.3s ease;
+    }
+
+    .form-input::placeholder {
+        color: var(--gray-500);
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: var(--accent-regular);
+        box-shadow: 0 0 0 3px var(--accent-subtle-overlay);
+    }
+
+    .form-select {
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%238490b5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1rem;
+        padding-right: 3rem;
+    }
+
+    .form-textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    .submit-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 1rem 2rem;
+        background: var(--gradient-accent);
+        color: var(--accent-text-over);
+        border: none;
+        border-radius: 999rem;
+        font-size: var(--text-base);
+        font-weight: 600;
+        font-family: var(--font-brand);
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        box-shadow: 0 4px 15px rgba(118, 17, 166, 0.35);
+        margin-top: 0.5rem;
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(118, 17, 166, 0.45);
+    }
+
+    .submit-btn:active {
+        transform: translateY(-1px);
+    }
+
+    /* CTA Section */
+    .cta-section {
+        background: var(--gradient-accent);
+        border-radius: 1.5rem;
+        padding: 3rem 2rem;
+        text-align: center;
+    }
+
+    .cta-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .cta-title {
+        font-size: var(--text-2xl);
+        font-weight: 700;
+        color: white;
+        margin: 0;
+    }
+
+    .cta-text {
+        font-size: var(--text-md);
+        color: rgba(255, 255, 255, 0.85);
+        margin: 0;
+    }
+
+    .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem 2rem;
+        background: white;
+        color: var(--accent-regular);
+        border-radius: 999rem;
+        font-size: var(--text-base);
+        font-weight: 600;
+        font-family: var(--font-brand);
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        margin-top: 0.5rem;
+    }
+
+    .cta-btn:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Animations */
+    [data-animate] {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+            opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+            transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    [data-animate].animated {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    [data-delay="1"] {
+        transition-delay: 0.1s;
+    }
+    [data-delay="2"] {
+        transition-delay: 0.2s;
+    }
+    [data-delay="3"] {
+        transition-delay: 0.3s;
+    }
+    [data-delay="4"] {
+        transition-delay: 0.4s;
+    }
+
+    @media (min-width: 50em) {
+        .contact-page {
+            gap: 5rem;
+        }
+
+        .info-title,
+        .form-title {
+            font-size: var(--text-3xl);
+        }
+
+        .cta-title {
+            font-size: var(--text-3xl);
+        }
+
+        .cta-section {
+            padding: 4rem 3rem;
+        }
+    }
+</style>
+
+<script>
+    // Intersection Observer for scroll animations
+    document.addEventListener("DOMContentLoaded", () => {
+        const animatedElements = document.querySelectorAll("[data-animate]");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("animated");
+                    }
+                });
+            },
+            {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px",
+            },
+        );
+
+        animatedElements.forEach((el) => observer.observe(el));
+
+        // Form submission handling
+        const form = document.getElementById("contact-form") as HTMLFormElement;
+        if (form) {
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+                const name = formData.get("name");
+                const email = formData.get("email");
+                const phone = formData.get("phone") || "No proporcionado";
+                const service = formData.get("service") || "No especificado";
+                const message = formData.get("message");
+
+                // Create WhatsApp message
+                const whatsappMessage = `
+*Nuevo mensaje de contacto*
+
+*Nombre:* ${name}
+*Email:* ${email}
+*Teléfono:* ${phone}
+*Servicio:* ${service}
+
+*Mensaje:*
+${message}
+                `.trim();
+
+                // Redirect to WhatsApp
+                const whatsappUrl = `https://wa.me/59175923339?text=${encodeURIComponent(whatsappMessage)}`;
+                window.open(whatsappUrl, "_blank");
+            });
+        }
+    });
+</script>

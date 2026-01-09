@@ -1,94 +1,166 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
 import Hero from "../components/Hero.astro";
+import Icon from "../components/Icon.astro";
 ---
 
-<BaseLayout title="Nosotros | RENOVA" description="Nosotros RENOVA Lorem Ipsum">
+<BaseLayout
+  title="Nosotros | RENOVA"
+  description="Conoce más sobre Estudio Creativo Renova - Nuestra misión, visión y valores institucionales"
+>
   <div class="stack gap-20">
     <main class="wrapper about">
-      <!-- <Hero
-        title="¿Quiénes somos?"
-        tagline="Estudio creativo Renova, donde la belleza y la innovación se unen para crear soluciones visuales que impactan."
-      >
-        <img
-          width="1553"
-          height="873"
-          src="/assets/at-work.jpg"
-          alt="Jeanine White at work with a colleague"
-        />
-      </Hero>
+      <Hero
+        title="Acerca de Nosotros"
+        tagline="En Estudio Creativo Renova, transformamos ideas en identidades visuales que inspiran y conectan"
+        align="center"
+      />
 
-      <section>
-        <h2 class="section-title">Misión:</h2>
-        <div class="content">
-          <p>
-            Nos enfocamos en Diseñar marcas con propósito, identidad visual con
-            alma y estrategias visuales que inspiran y conectan con el público,
-            además de darle un toque de profesionalismo que una empresa o
-            negocio necesita hoy en día en el mundo digital.
-          </p>
-          <p>
-            En Estudio Creativo Renova, cada proyecto se convierte en una
-            oportunidad para contar historias visuales impactantes que inspiran
-            confianza y generan resultados que impacten.
+      <!-- Sección Principal -->
+      <section class="about-intro">
+        <div class="intro-content">
+          <p class="intro-text">
+            Somos un equipo apasionado por el diseño y la creatividad. Creemos
+            que cada marca tiene una historia única que contar, y nuestra misión
+            es ayudarte a contarla de la manera más impactante posible.
           </p>
         </div>
       </section>
-      <section>
-        <h2 class="section-title">Visión:</h2>
-        <div class="content">
-          <p>
-            Buscamos revolucionar y desarrollar marcas visionarias, para
-            empresas que valoran la creatividad, la calidad y el impacto en su
-            comunicación visual, transformando proyectos en historias de éxito y
-            construyendo un legado de diseño innovador.
-          </p>
+
+      <!-- Misión y Visión -->
+      <section class="mission-vision-section">
+        <div class="mv-grid">
+          <!-- Misión -->
+          <article class="mv-card mission-card" data-animate="fade-up">
+            <div class="mv-icon">
+              <Icon icon="rocket-launch" size="2.5rem" gradient />
+            </div>
+            <div class="mv-content">
+              <h2 class="mv-title">Nuestra Misión</h2>
+              <p class="mv-text">
+                Nos enfocamos en diseñar marcas con propósito, identidad visual
+                con alma y estrategias visuales que inspiran y conectan con el
+                público, además de darle un toque de profesionalismo que una
+                empresa o negocio necesita hoy en día en el mundo digital.
+              </p>
+              <p class="mv-text">
+                En Estudio Creativo Renova, cada proyecto se convierte en una
+                oportunidad para contar historias visuales impactantes que
+                inspiran confianza y generan resultados.
+              </p>
+            </div>
+          </article>
+
+          <!-- Visión -->
+          <article class="mv-card vision-card" data-animate="fade-up">
+            <div class="mv-icon">
+              <Icon icon="lightbulb" size="2.5rem" gradient />
+            </div>
+            <div class="mv-content">
+              <h2 class="mv-title">Nuestra Visión</h2>
+              <p class="mv-text">
+                Buscamos revolucionar y desarrollar marcas visionarias, para
+                empresas que valoran la creatividad, la calidad y el impacto en
+                su comunicación visual.
+              </p>
+              <p class="mv-text">
+                Transformamos proyectos en historias de éxito y construimos un
+                legado de diseño innovador que perdure en el tiempo.
+              </p>
+            </div>
+          </article>
         </div>
       </section>
-      <section>
-        <h2 class="section-title">Valores:</h2>
-        <div class="content">
-          <ul>
-            <li>Creatividad</li>
-            <li>Pasión</li>
-            <li>Innovación</li>
-            <li>Calidad</li>
-            <li>Responsabilidad</li>
-            <li>Autenticidad</li>
-          </ul>
+
+      <!-- Valores Institucionales -->
+      <section class="values-section">
+        <div class="values-header" data-animate="fade-up">
+          <h2 class="section-title">Nuestros Valores</h2>
+          <p class="section-subtitle">
+            Los pilares que guían cada proyecto y decisión
+          </p>
         </div>
-      </section> -->
-      <div class="grid">
-        <div class="mision">
-          <h2 class="section-title">Misión:</h2>
-          <div class="content">
-            <p>
-              Nos enfocamos en Diseñar marcas con propósito, identidad visual
-              con alma y estrategias visuales que inspiran y conectan con el
-              público, además de darle un toque de profesionalismo que una
-              empresa o negocio necesita hoy en día en el mundo digital.
+
+        <div class="values-grid">
+          <article class="value-card" data-animate="fade-up" data-delay="0">
+            <div class="value-icon-wrapper">
+              <div class="value-icon">
+                <Icon icon="palette" size="2rem" />
+              </div>
+            </div>
+            <h3 class="value-title">Creatividad</h3>
+            <p class="value-description">
+              Exploramos nuevas ideas y enfoques únicos para cada proyecto,
+              rompiendo moldes y creando soluciones originales.
             </p>
-            <p>
-              En Estudio Creativo Renova, cada proyecto se convierte en una
-              oportunidad para contar historias visuales impactantes que
-              inspiran confianza y generan resultados que impacten.
+          </article>
+
+          <article class="value-card" data-animate="fade-up" data-delay="1">
+            <div class="value-icon-wrapper">
+              <div class="value-icon">
+                <Icon icon="heart" size="2rem" />
+              </div>
+            </div>
+            <h3 class="value-title">Pasión</h3>
+            <p class="value-description">
+              Amamos lo que hacemos y eso se refleja en cada detalle de nuestro
+              trabajo.
             </p>
-          </div>
+          </article>
+
+          <article class="value-card" data-animate="fade-up" data-delay="2">
+            <div class="value-icon-wrapper">
+              <div class="value-icon">
+                <Icon icon="strategy" size="2rem" />
+              </div>
+            </div>
+            <h3 class="value-title">Innovación</h3>
+            <p class="value-description">
+              Nos mantenemos a la vanguardia de las tendencias para ofrecer
+              soluciones modernas y efectivas.
+            </p>
+          </article>
+
+          <article class="value-card" data-animate="fade-up" data-delay="3">
+            <div class="value-icon-wrapper">
+              <div class="value-icon">
+                <Icon icon="trophy" size="2rem" />
+              </div>
+            </div>
+            <h3 class="value-title">Calidad</h3>
+            <p class="value-description">
+              Cada proyecto recibe nuestra máxima atención y compromiso con la
+              excelencia.
+            </p>
+          </article>
+
+          <article class="value-card" data-animate="fade-up" data-delay="4">
+            <div class="value-icon-wrapper">
+              <div class="value-icon">
+                <Icon icon="paper-plane-tilt" size="2rem" />
+              </div>
+            </div>
+            <h3 class="value-title">Responsabilidad</h3>
+            <p class="value-description">
+              Cumplimos con nuestros compromisos y entregamos resultados que
+              superan expectativas.
+            </p>
+          </article>
+
+          <article class="value-card" data-animate="fade-up" data-delay="5">
+            <div class="value-icon-wrapper">
+              <div class="value-icon">
+                <Icon icon="star" size="2rem" />
+              </div>
+            </div>
+            <h3 class="value-title">Autenticidad</h3>
+            <p class="value-description">
+              Creamos marcas genuinas que reflejan la verdadera esencia de cada
+              cliente.
+            </p>
+          </article>
         </div>
-        <div class="vision">
-          <h2 class="section-title">Visión:</h2>
-          <div class="content">
-            <p>
-              Buscamos revolucionar y desarrollar marcas visionarias, para
-              empresas que valoran la creatividad, la calidad y el impacto en su
-              comunicación visual, transformando proyectos en historias de éxito
-              y construyendo un legado de diseño innovador.
-            </p>
-          </div>
-        </div>
-        <div class="imagen">Imagen</div>
-      </div>
+      </section>
     </main>
   </div>
 </BaseLayout>
@@ -97,75 +169,308 @@ import Hero from "../components/Hero.astro";
   .about {
     display: flex;
     flex-direction: column;
-    gap: 3.5rem;
+    gap: 4rem;
   }
 
-  img {
-    margin-top: 1.5rem;
-    border-radius: 1.5rem;
-    box-shadow: var(--shadow-md);
+  /* Intro Section */
+  .about-intro {
+    text-align: center;
+    max-width: 65ch;
+    margin: 0 auto;
   }
 
-  section {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    color: var(--gray-200);
+  .intro-text {
+    font-size: var(--text-lg);
+    color: var(--gray-300);
+    line-height: 1.8;
   }
 
-  .section-title {
-    grid-column-start: 1;
-    font-size: var(--text-xl);
-    color: var(--gray-0);
+  /* Mission & Vision Section */
+  .mission-vision-section {
+    padding: 2rem 0;
   }
 
-  .content {
-    grid-column: 2 / 4;
-  }
-
-  .content :global(a) {
-    text-decoration: 1px solid underline transparent;
-    text-underline-offset: 0.25em;
-    transition: text-decoration-color var(--theme-transition);
-  }
-
-  .content :global(a:hover),
-  .content :global(a:focus) {
-    text-decoration-color: currentColor;
+  .mv-grid {
+    display: grid;
+    gap: 2rem;
   }
 
   @media (min-width: 50em) {
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-template-rows: repeat(5, 1fr);
-      gap: 1rem;
+    .mv-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
     }
+  }
 
-    .mision {
-      grid-column: span 2;
-      grid-row: span 2;
-    }
-    .vision {
-      grid-column: 3 / span 3;
-    }
-    .imagen {
-      grid-column: 3 / span 3;
-      grid-row: 2;
-    }
+  .mv-card {
+    position: relative;
+    background: var(--gradient-subtle);
+    border: 1px solid var(--gray-800);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
 
+  .mv-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .mv-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-regular);
+    box-shadow:
+      0 20px 40px -15px rgba(118, 17, 166, 0.2),
+      0 8px 20px -8px rgba(0, 0, 0, 0.15);
+  }
+
+  .mv-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .mv-icon {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-subtle-overlay);
+    border-radius: 1rem;
+    color: var(--accent-regular);
+    transition: all 0.4s ease;
+  }
+
+  .mv-card:hover .mv-icon {
+    background: var(--accent-regular);
+    color: white;
+    transform: scale(1.1) rotate(-5deg);
+  }
+
+  .mv-title {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--gray-0);
+    margin: 0;
+  }
+
+  .mv-text {
+    font-size: var(--text-md);
+    color: var(--gray-300);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .mv-text + .mv-text {
+    margin-top: 1rem;
+  }
+
+  @media (min-width: 50em) {
+    .mv-card {
+      padding: 2.5rem;
+    }
+  }
+
+  /* Values Section */
+  .values-section {
+    padding: 3rem 0;
+  }
+
+  .values-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-title {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--gray-0);
+    margin: 0 0 0.75rem 0;
+  }
+
+  .section-subtitle {
+    font-size: var(--text-lg);
+    color: var(--gray-400);
+    margin: 0;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 600px) {
+    .values-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .values-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .value-card {
+    position: relative;
+    background: var(--gradient-subtle);
+    border: 1px solid var(--gray-800);
+    border-radius: 1.25rem;
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    overflow: hidden;
+  }
+
+  .value-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      transparent 0%,
+      var(--accent-overlay) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .value-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent-regular);
+    box-shadow:
+      0 20px 40px -15px rgba(118, 17, 166, 0.25),
+      0 8px 20px -8px rgba(0, 0, 0, 0.15);
+  }
+
+  .value-card:hover::after {
+    opacity: 1;
+  }
+
+  .value-icon-wrapper {
+    position: relative;
+    z-index: 1;
+  }
+
+  .value-icon {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-subtle-overlay);
+    border-radius: 50%;
+    color: var(--accent-regular);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .value-card:hover .value-icon {
+    background: var(--accent-regular);
+    color: white;
+    transform: scale(1.15) rotate(10deg);
+    box-shadow: 0 8px 20px rgba(118, 17, 166, 0.4);
+  }
+
+  .value-title {
+    position: relative;
+    z-index: 1;
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--gray-0);
+    margin: 0;
+  }
+
+  .value-description {
+    position: relative;
+    z-index: 1;
+    font-size: var(--text-sm);
+    color: var(--gray-400);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Animations */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  [data-animate].animated {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  [data-delay="1"] {
+    transition-delay: 0.1s;
+  }
+  [data-delay="2"] {
+    transition-delay: 0.2s;
+  }
+  [data-delay="3"] {
+    transition-delay: 0.3s;
+  }
+  [data-delay="4"] {
+    transition-delay: 0.4s;
+  }
+  [data-delay="5"] {
+    transition-delay: 0.5s;
+  }
+
+  @media (min-width: 50em) {
     .about {
-      display: grid;
-      grid-template-columns: 1fr 60% 1fr;
+      gap: 5rem;
     }
 
-    .about > :global(:first-child) {
-      grid-column-start: 2;
+    .section-title {
+      font-size: var(--text-4xl);
     }
 
-    section {
-      display: contents;
-      font-size: var(--text-lg);
+    .intro-text {
+      font-size: var(--text-xl);
     }
   }
 </style>
+
+<script>
+  // Intersection Observer for scroll animations
+  document.addEventListener("DOMContentLoaded", () => {
+    const animatedElements = document.querySelectorAll("[data-animate]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animated");
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      },
+    );
+
+    animatedElements.forEach((el) => observer.observe(el));
+  });
+</script>
