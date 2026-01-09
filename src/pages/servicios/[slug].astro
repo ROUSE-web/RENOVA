@@ -101,28 +101,22 @@ const services = [
         ],
         workTypes: [
             {
-                title: "Cajas y Envases",
+                title: "Cajas",
                 description:
-                    "Diseño de empaques primarios que protegen y presentan tu producto.",
+                    "Diseño de cajas que protegen y presentan tu producto.",
                 icon: "package",
             },
             {
-                title: "Etiquetas",
+                title: "Envases",
                 description:
-                    "Diseño de etiquetas informativas y atractivas para tus productos.",
-                icon: "file-text",
+                    "Diseño de envases para productos que requieren una presentación especial.",
+                icon: "package",
             },
             {
                 title: "Bolsas Personalizadas",
                 description:
                     "Bolsas con tu marca para una experiencia de compra memorable.",
                 icon: "package",
-            },
-            {
-                title: "Packaging Premium",
-                description:
-                    "Empaques de lujo para productos que requieren una presentación especial.",
-                icon: "star",
             },
         ],
     },
@@ -301,7 +295,7 @@ export function getStaticPaths() {
                 </div>
             </section>
 
-            <!-- Tipos de trabajo -->
+            <!-- Nuestras ofertas -->
             <WorkTypes workTypes={service.workTypes} />
         </main>
     </div>

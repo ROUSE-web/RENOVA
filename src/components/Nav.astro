@@ -50,8 +50,18 @@ const isCurrentPage = (href: string) => {
 <nav>
   <div class="menu-header">
     <a href="/" class="site-title">
-      <img src="/assets/logo.png" class="logo" alt="Renova" />
-      Renova
+      <img
+        src="/assets/logo-1.webp"
+        class="logo logo-light"
+        alt="Renova"
+        loading="eager"
+      />
+      <img
+        src="/assets/logo-2.webp"
+        class="logo logo-dark"
+        alt="Renova"
+        loading="eager"
+      />
     </a>
     <menu-button>
       <template>
@@ -294,6 +304,19 @@ const isCurrentPage = (href: string) => {
   }
   .logo {
     height: 2rem;
+    width: auto;
+  }
+
+  .logo-dark {
+    display: none;
+  }
+
+  :global(.theme-dark) .logo-light {
+    display: none;
+  }
+
+  :global(.theme-dark) .logo-dark {
+    display: block;
   }
 
   @media (min-width: 50em) {
