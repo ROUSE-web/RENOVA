@@ -106,6 +106,25 @@ const isCurrentPage = (href: string) => {
   </noscript>
   <div id="menu-content" hidden>
     <ul class="nav-items">
+      <li>
+        <button
+          id="replay-intro-btn"
+          class="link replay-intro-btn"
+          aria-label="Ver intro"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="replay-icon"
+          >
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <span>Ver Intro</span>
+        </button>
+      </li>
       {
         textLinks.map(({ label, href }) => (
           <li>
@@ -174,6 +193,15 @@ const isCurrentPage = (href: string) => {
     }
   }
   customElements.define("menu-button", MenuButton);
+
+  // Replay Intro Button Logic
+  const replayBtn = document.getElementById("replay-intro-btn");
+  if (replayBtn) {
+    replayBtn.addEventListener("click", () => {
+      sessionStorage.removeItem("renova_intro_watched");
+      window.location.reload();
+    });
+  }
 </script>
 
 <style>
@@ -405,6 +433,43 @@ const isCurrentPage = (href: string) => {
   @media (forced-colors: active) {
     .link[aria-current="page"] {
       color: SelectedItem;
+    }
+  }
+
+  /* Replay Intro Button Styles */
+  .replay-intro-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  .replay-intro-btn .replay-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .replay-intro-btn:hover .replay-icon {
+    transform: scale(1.15);
+  }
+
+  @media (min-width: 50em) {
+    .replay-intro-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 999rem;
+      transition:
+        color var(--theme-transition),
+        background-color var(--theme-transition);
+    }
+
+    .replay-intro-btn:hover,
+    .replay-intro-btn:focus {
+      color: var(--gray-100);
+      background-color: var(--accent-subtle-overlay);
     }
   }
 </style>
