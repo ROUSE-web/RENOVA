@@ -84,23 +84,23 @@ const { images, serviceSlug } = Astro.props;
     .carousel-3d-container {
         position: relative;
         width: 100%;
-        max-width: 1400px;
+        max-width: 1600px;
         margin: 0 auto;
-        padding: 1rem;
+        padding: 1.5rem;
     }
 
     .carousel-3d {
         position: relative;
         width: 100%;
-        height: 550px;
-        perspective: 1600px;
+        height: 600px;
+        perspective: 1800px;
         overflow: visible;
     }
 
     @media (max-width: 768px) {
         .carousel-3d {
-            height: 400px;
-            perspective: 1000px;
+            height: 380px;
+            perspective: 1200px;
         }
     }
 
@@ -115,9 +115,9 @@ const { images, serviceSlug } = Astro.props;
         position: absolute;
         left: 50%;
         top: 50%;
-        width: 65%;
-        max-width: 700px;
-        height: 85%;
+        width: 70%;
+        max-width: 800px;
+        height: 90%;
         transform-origin: center center;
         transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
         transform-style: preserve-3d;
@@ -125,8 +125,10 @@ const { images, serviceSlug } = Astro.props;
 
     @media (max-width: 768px) {
         .carousel-3d-item {
-            width: 80%;
-            height: 80%;
+            width: 75%;
+            max-width: 320px;
+            height: auto;
+            aspect-ratio: 1 / 1;
         }
     }
 
@@ -134,13 +136,13 @@ const { images, serviceSlug } = Astro.props;
         position: relative;
         width: 100%;
         height: 100%;
-        border-radius: 0.5rem;
+        border-radius: 0.75rem;
         overflow: hidden;
-        /* Borde negro grueso como en la imagen de referencia */
-        border: 12px solid #1a1a1a;
+        /* Borde negro más delgado para dar más espacio a las imágenes */
+        border: 6px solid #1a1a1a;
         box-shadow:
-            0 30px 60px -12px rgba(0, 0, 0, 0.5),
-            0 18px 36px -18px rgba(0, 0, 0, 0.4),
+            0 35px 70px -15px rgba(0, 0, 0, 0.55),
+            0 20px 40px -20px rgba(0, 0, 0, 0.45),
             inset 0 0 0 1px rgba(255, 255, 255, 0.1);
         background: #1a1a1a;
         transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
@@ -148,7 +150,9 @@ const { images, serviceSlug } = Astro.props;
 
     @media (max-width: 768px) {
         .image-wrapper {
-            border: 8px solid #1a1a1a;
+            border: 4px solid #1a1a1a;
+            border-radius: 0.75rem;
+            aspect-ratio: 1 / 1;
         }
     }
 
@@ -169,7 +173,13 @@ const { images, serviceSlug } = Astro.props;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center center;
         display: block;
+        transition: transform 0.5s ease;
+    }
+
+    .carousel-3d-item:hover .image-wrapper img {
+        transform: scale(1.02);
     }
 
     /* Carousel Controls */
@@ -285,9 +295,9 @@ const { images, serviceSlug } = Astro.props;
 
         private updateCarousel(): void {
             const isMobile = window.innerWidth <= 768;
-            const spacing = isMobile ? 180 : 220; // Espaciado horizontal entre tarjetas
-            const depthSpacing = isMobile ? 100 : 150; // Profundidad en Z
-            const rotationAngle = isMobile ? 35 : 45; // Ángulo de rotación
+            const spacing = isMobile ? 200 : 280; // Espaciado horizontal entre tarjetas
+            const depthSpacing = isMobile ? 80 : 120; // Profundidad en Z (menor para ver mejor las imágenes laterales)
+            const rotationAngle = isMobile ? 30 : 40; // Ángulo de rotación (más suave para mejor visibilidad)
 
             this.items.forEach((item, index) => {
                 const position = index - this.currentIndex;
@@ -309,17 +319,17 @@ const { images, serviceSlug } = Astro.props;
                 } else if (position > 0) {
                     // Imágenes a la derecha
                     rotateY = -rotationAngle;
-                    scale = 0.85 - Math.abs(position) * 0.1;
+                    scale = 0.9 - Math.abs(position) * 0.08;
                     zIndex = 10 - position;
                 } else {
                     // Imágenes a la izquierda
                     rotateY = rotationAngle;
-                    scale = 0.85 - Math.abs(position) * 0.1;
+                    scale = 0.9 - Math.abs(position) * 0.08;
                     zIndex = 10 + position;
                 }
 
                 // Limitar escala mínima
-                scale = Math.max(scale, 0.6);
+                scale = Math.max(scale, 0.65);
 
                 // Aplicar transformación tipo coverflow
                 item.style.transform = `
@@ -335,8 +345,8 @@ const { images, serviceSlug } = Astro.props;
                 // Todas las imágenes son opacas
                 item.style.opacity = "1";
 
-                // Ocultar imágenes muy alejadas
-                if (Math.abs(position) > 2) {
+                // Ocultar imágenes muy alejadas (mostrar hasta 3 a cada lado)
+                if (Math.abs(position) > 3) {
                     item.style.opacity = "0";
                     item.style.pointerEvents = "none";
                 } else {
