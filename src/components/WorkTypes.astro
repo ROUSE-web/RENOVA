@@ -21,7 +21,7 @@ const { workTypes } = Astro.props;
             workTypes.map((work) => (
                 <article class="work-type-card">
                     <div class="card-icon">
-                        <Icon icon={work.icon as any} size="2rem" gradient />
+                        <Icon icon={work.icon as any} size="2.5rem" gradient />
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">{work.title}</h3>
@@ -122,8 +122,8 @@ const { workTypes } = Astro.props;
     .card-icon {
         position: relative;
         z-index: 1;
-        width: 3.5rem;
-        height: 3.5rem;
+        width: 4rem;
+        height: 4rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -136,7 +136,7 @@ const { workTypes } = Astro.props;
     .work-type-card:hover .card-icon {
         background: var(--accent-regular);
         color: white;
-        transform: scale(1.1);
+        transform: scale(1.05);
     }
 
     .card-content {

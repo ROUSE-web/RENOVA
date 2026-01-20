@@ -10,22 +10,25 @@ import Icon from "../components/Icon.astro";
 >
   <div class="stack gap-20">
     <main class="wrapper about">
-      <Hero
-        title="Acerca de Nosotros"
-        tagline="En Estudio Creativo Renova, transformamos ideas en identidades visuales que inspiran y conectan"
-        align="center"
-      />
+      <div class="about-header-container">
+        <Hero
+          title="Acerca de Nosotros"
+          tagline="En Estudio Creativo Renova somos un equipo creativo dedicado a transformar ideas en soluciones visuales estratégicas."
+          align="center"
+        />
 
-      <!-- Sección Principal -->
-      <section class="about-intro">
-        <div class="intro-content">
-          <p class="intro-text">
-            Somos un equipo apasionado por el diseño y la creatividad. Creemos
-            que cada marca tiene una historia única que contar, y nuestra misión
-            es ayudarte a contarla de la manera más impactante posible.
-          </p>
-        </div>
-      </section>
+        <!-- Sección Principal -->
+        <section class="about-intro">
+          <div class="intro-content">
+            <p class="intro-text">
+              Nos especializamos en el diseño gráfico, la identidad visual y la
+              comunicación publicitaria, ayudando a marcas, emprendimientos y
+              empresas a proyectar una imagen profesional, coherente y
+              memorable.
+            </p>
+          </div>
+        </section>
+      </div>
 
       <!-- Misión y Visión -->
       <section class="mission-vision-section">
@@ -38,15 +41,17 @@ import Icon from "../components/Icon.astro";
             <div class="mv-content">
               <h2 class="mv-title">Misión</h2>
               <p class="mv-text">
-                Nos enfocamos en diseñar marcas con propósito, identidad visual
-                con alma y estrategias visuales que inspiran y conectan con el
-                público, además de darle un toque de profesionalismo que una
-                empresa o negocio necesita hoy en día en el mundo digital.
+                Enfocarnos en crear marcas con alma y propósito, transformando
+                ideas en identidades visuales sólidas que inspiran confianza,
+                generan conexión y fortalecen el crecimiento de empresas y
+                emprendimientos en el mundo digital.
               </p>
               <p class="mv-text">
-                En Estudio Creativo Renova, cada proyecto se convierte en una
-                oportunidad para contar historias visuales impactantes que
-                inspiran confianza y generan resultados.
+                Ser un estudio creativo referente en diseño e identidad visual,
+                reconocido por crear marcas auténticas y estratégicas que
+                inspiran, conectan y aportan valor, fortaleciendo el crecimiento
+                de empresas pequeñas, medianas y grandes además de los pequeños
+                emprendimientos.
               </p>
             </div>
           </article>
@@ -77,7 +82,7 @@ import Icon from "../components/Icon.astro";
         <div class="values-header" data-animate="fade-up">
           <h2 class="section-title">Nuestros Valores</h2>
           <p class="section-subtitle">
-            Los pilares que guían cada proyecto y decisión
+            Los valores y pilares fundamentales en cada proyecto que realizamos.
           </p>
         </div>
 
@@ -170,6 +175,12 @@ import Icon from "../components/Icon.astro";
     display: flex;
     flex-direction: column;
     gap: 4rem;
+  }
+
+  .about-header-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   /* Intro Section */

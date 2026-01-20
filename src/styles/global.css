@@ -177,7 +177,8 @@ h5 {
   font-family: var(--font-brand);
   font-weight: 700;
   color: var(--gray-100);
-  letter-spacing: -0.02em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 h1 {

@@ -22,10 +22,57 @@ const { title, description } = Astro.props;
   <body>
     <!-- Video Intro Overlay -->
     <div id="video-intro" class="video-intro">
-      <video id="intro-video" autoplay muted playsinline class="intro-video">
+      <video id="intro-video" playsinline class="intro-video">
         <source src="/assets/Renova.mp4" type="video/mp4" />
       </video>
-      <button id="skip-intro" class="skip-intro-btn" aria-label="Saltar intro">
+
+      <button
+        id="toggle-sound"
+        class="control-btn sound-btn"
+        aria-label="Alternar sonido"
+      >
+        <!-- Icon Muted (Hidden by default) -->
+        <svg
+          id="icon-muted"
+          class="hidden"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+          <line x1="23" y1="9" x2="17" y2="15"></line>
+          <line x1="17" y1="9" x2="23" y2="15"></line>
+        </svg>
+        <!-- Icon Unmuted (Visible by default) -->
+        <svg
+          id="icon-unmuted"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"
+          ></path>
+        </svg>
+      </button>
+
+      <button
+        id="skip-intro"
+        class="control-btn skip-btn"
+        aria-label="Saltar intro"
+      >
         <span>Saltar</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -57,6 +104,9 @@ const { title, description } = Astro.props;
         "intro-video",
       ) as HTMLVideoElement;
       const skipBtn = document.getElementById("skip-intro");
+      const soundBtn = document.getElementById("toggle-sound");
+      const iconMuted = document.getElementById("icon-muted");
+      const iconUnmuted = document.getElementById("icon-unmuted");
       const SESSION_KEY = "renova_intro_watched";
 
       function hideIntro() {
@@ -67,6 +117,17 @@ const { title, description } = Astro.props;
             document.body.style.overflow = "";
             sessionStorage.setItem(SESSION_KEY, "true");
           }, 800);
+        }
+      }
+
+      function updateSoundIcons() {
+        if (!iconMuted || !iconUnmuted || !introVideo) return;
+        if (introVideo.muted) {
+          iconMuted.classList.remove("hidden");
+          iconUnmuted.classList.add("hidden");
+        } else {
+          iconMuted.classList.add("hidden");
+          iconUnmuted.classList.remove("hidden");
         }
       }
 
@@ -81,13 +142,41 @@ const { title, description } = Astro.props;
 
         // When video ends, hide the intro
         if (introVideo) {
+          // Attempt to play with sound
+          const playPromise = introVideo.play();
+
+          if (playPromise !== undefined) {
+            playPromise.catch((error) => {
+              // Auto-play was prevented (likely due to sound).
+              // Fallback: Mute and play.
+              console.log(
+                "Autoplay with sound blocked. Falling back to muted autoplay.",
+              );
+              introVideo.muted = true;
+              updateSoundIcons();
+              introVideo.play();
+            });
+          }
+
           introVideo.addEventListener("ended", hideIntro);
         }
       }
 
+      // Sound Toggle Logic
+      if (soundBtn && introVideo) {
+        soundBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          introVideo.muted = !introVideo.muted;
+          updateSoundIcons();
+        });
+      }
+
       // Skip button functionality
       if (skipBtn) {
-        skipBtn.addEventListener("click", hideIntro);
+        skipBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          hideIntro();
+        });
       }
 
       // Also allow clicking anywhere on the video to skip
@@ -124,6 +213,10 @@ const { title, description } = Astro.props;
           visibility 0.8s ease-out;
       }
 
+      .hidden {
+        display: none;
+      }
+
       .video-intro.fade-out {
         opacity: 0;
         visibility: hidden;
@@ -135,10 +228,8 @@ const { title, description } = Astro.props;
         object-fit: cover;
       }
 
-      .skip-intro-btn {
+      .control-btn {
         position: absolute;
-        bottom: 40px;
-        right: 40px;
         display: flex;
         align-items: center;
         gap: 8px;
@@ -157,21 +248,39 @@ const { title, description } = Astro.props;
         z-index: 10000;
       }
 
-      .skip-intro-btn:hover {
+      .control-btn:hover {
         background: rgba(255, 255, 255, 0.25);
         transform: scale(1.05);
       }
 
-      .skip-intro-btn:active {
+      .control-btn:active {
         transform: scale(0.98);
       }
 
+      .skip-btn {
+        bottom: 40px;
+        right: 40px;
+      }
+
+      .sound-btn {
+        bottom: 40px;
+        left: 40px;
+        padding: 12px;
+        border-radius: 50%;
+      }
+
       @media (max-width: 768px) {
-        .skip-intro-btn {
+        .skip-btn {
           bottom: 30px;
           right: 20px;
           padding: 10px 20px;
           font-size: 13px;
+        }
+
+        .sound-btn {
+          bottom: 30px;
+          left: 20px;
+          padding: 10px;
         }
       }
 
