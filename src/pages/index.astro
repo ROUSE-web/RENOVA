@@ -142,6 +142,23 @@ const services = [
     object-position: top;
     padding: 50px;
   }
+
+  /* Restore original hero title size for homepage */
+  .hero :global(.title) {
+    font-size: var(--text-2xl);
+  }
+  .hero :global(.subtitle) {
+    font-size: var(--text-2xl);
+  }
+
+  @media (min-width: 50em) {
+    .hero :global(.title) {
+      font-size: var(--text-5xl);
+    }
+    .hero :global(.subtitle) {
+      font-size: var(--text-4xl);
+    }
+  }
   aside {
     display: flex;
     flex-direction: column;

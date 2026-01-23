@@ -43,7 +43,7 @@ const services = [
                 icon: "book-open",
             },
             {
-                title: "Asesoramiento legal de registro de marca",
+                title: "Asesoramiento legal y registro de marca",
                 description:
                     "Brindamos asesoramiento en el proceso de registro de marca, guiándote en los pasos necesarios para proteger legalmente tu identidad. Te orientamos sobre los requisitos y procedimientos, ayudándote a resguardar tu marca y fortalecer su valor a largo plazo.",
                 icon: "scales",
@@ -66,6 +66,7 @@ const services = [
             "/assets/services/stationery/proyecto-7.webp",
             "/assets/services/stationery/proyecto-8.webp",
             "/assets/services/stationery/proyecto-9.webp",
+            "/assets/services/stationery/proyecto-10.webp",
         ],
         workTypes: [
             {
@@ -89,7 +90,7 @@ const services = [
             {
                 title: "Credenciales",
                 description:
-                    "Diseñamos credenciales personalizadas para empresas, instituciones y eventos.",
+                    "Diseñamos credenciales personalizados en material pvc y metálico enfocado para empresas, instituciones o eventos corporativos.",
                 icon: "identification-card",
             },
             {
@@ -133,12 +134,14 @@ const services = [
         workTypes: [
             {
                 title: "Cajas",
-                description: "Cajas para comida rápida",
+                description:
+                    "Diseñamos cajas de comida rápida, conos, empaques.",
                 icon: "package",
             },
             {
                 title: "Bolsas Personalizadas",
-                description: "Bolsas de papel personalizadas",
+                description:
+                    "Bolsas de papel craf personalizadas con tu logotipo o tu marca.",
                 icon: "shopping-bag",
             },
         ],
@@ -162,7 +165,7 @@ const services = [
         ],
         workTypes: [
             {
-                title: "Diseño de Contenido Visual",
+                title: "Diseño de Post Publicitario",
                 description:
                     "Creamos diseños gráficos atractivos y profesionales para redes sociales, respetando la identidad visual de tu marca y cuidando la estética, el mensaje y la calidad visual de tu marca.",
                 icon: "image",
@@ -174,16 +177,22 @@ const services = [
                 icon: "pencil-line",
             },
             {
-                title: "Posts para Feed",
+                title: "Diseño para historias",
                 description:
-                    "Diseño de publicaciones atractivas y coherentes con tu identidad de marca, adecuado al formato de las redes sociales.",
+                    "Diseño de imágenes atractivas y coherentes con tu identidad de marca, adecuado en el formato 9:16 para redes sociales y plataformas.",
                 icon: "instagram-logo",
             },
             {
                 title: "Menús digitales",
                 description:
-                    "Diseñamos menús digitales modernos, visuales y funcionales, pensados para mejorar la experiencia de tus clientes y optimizar la presentación de tus productos o servicios. Creamos menús atractivos, fáciles de navegar y adaptables a dispositivos móviles, ideales para restaurantes, cafeterías, bares y negocios gastronómicos.",
+                    "Diseñamos menús digitales atractivos, fáciles de navegar y adaptables a dispositivos móviles, ideales para restaurantes, cafeterías, bares y negocios gastronómicos.",
                 icon: "device-mobile",
+            },
+            {
+                title: "Publicidad pagada",
+                description:
+                    "Realizamos campañas publicitarias atractivas y coherentes con tu identidad de marca, adecuado al formato de las redes sociales.",
+                icon: "tiktok-logo",
             },
         ],
     },
@@ -204,7 +213,7 @@ const services = [
             {
                 title: "Landing Pages",
                 description:
-                    "Páginas web optimizadas para convertir visitantes en clientes.",
+                    "Páginas web simples y optimizadas con lo necesario para convertir visitantes en clientes.",
                 icon: "rocket-launch",
             },
             {
@@ -239,7 +248,6 @@ const services = [
             "/assets/services/gigantografia/proyecto-3.webp",
             "/assets/services/gigantografia/proyecto-4.webp",
             "/assets/services/gigantografia/proyecto-5.webp",
-            "/assets/services/gigantografia/proyecto-6.webp",
         ],
         workTypes: [
             {
@@ -310,7 +318,7 @@ export function getStaticPaths() {
             <Hero
                 title={service.title}
                 tagline={service.subtitle}
-                align="start"
+                align="center"
             />
 
             <!-- Carousel 3D de proyectos -->
