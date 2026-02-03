@@ -6,6 +6,8 @@
 import MainHead from "../components/MainHead.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import CallToAction from "../components/CallToAction.astro";
+import Icon from "../components/Icon.astro";
 
 interface Props {
   title?: string | undefined;
@@ -96,6 +98,13 @@ const { title, description } = Astro.props;
       <slot />
       <Footer />
     </div>
+
+    <aside class="floating-cta">
+      <CallToAction href="https://wa.me/59175923339" size="sm">
+        <span class="cta-text">¿Cómo puedo ayudarte?</span>
+        <Icon icon="whatsapp-logo" size="1.2em" />
+      </CallToAction>
+    </aside>
 
     <script>
       // Video Intro Logic
@@ -383,11 +392,54 @@ const { title, description } = Astro.props;
           /*base*/ normal;
       }
       @media (forced-colors: active) {
-        /* Deactivate custom backgrounds for high contrast users. */
         .backgrounds {
           background: none;
           background-blend-mode: none;
           --bg-gradient-size: none;
+        }
+      }
+
+      /* Floating CTA Styles */
+      .floating-cta {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        z-index: 1000;
+      }
+
+      .floating-cta :global(a) {
+        opacity: 0.9;
+        transition:
+          transform 0.2s ease,
+          opacity 0.2s ease;
+      }
+
+      .floating-cta :global(a:hover) {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+
+      .cta-text {
+        display: none;
+        font-size: var(--text-sm);
+      }
+
+      @media (max-width: 50em) {
+        .floating-cta :global(a) {
+          padding: 0;
+          width: 3rem;
+          height: 3rem;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          box-shadow: var(--shadow-sm);
+        }
+      }
+
+      @media (min-width: 50em) {
+        .cta-text {
+          display: inline;
         }
       }
     </style>

@@ -34,7 +34,8 @@ const { workTypes } = Astro.props;
                         class="quote-btn"
                     >
                         <Icon icon="whatsapp-logo" size="1.2em" />
-                        <span>¡Escríbeme!</span>
+                        <span>Solicitar Servicio</span>
+                        <Icon icon="arrow-right" size="1.2em" />
                     </a>
                 </article>
             ))
@@ -234,5 +235,13 @@ const { workTypes } = Astro.props;
 
     .quote-btn:active {
         transform: translateY(-1px) scale(1);
+    }
+
+    .quote-btn :global(svg:last-of-type) {
+        transition: transform var(--theme-transition);
+    }
+
+    .quote-btn:hover :global(svg:last-of-type) {
+        transform: translateX(0.45rem);
     }
 </style>

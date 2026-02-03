@@ -60,13 +60,13 @@ const services = [
     <div class="wrapper stack gap-8 lg:gap-20">
       <header class="hero">
         <Hero
-          title="RENOVA"
+          title="RENOVATE"
           subtitle="ESTUDIO CREATIVO"
-          tagline="Renovamos la forma en la que el mundo ve tu marca."
+          tagline="Renovamos la forma en que las marcas se comunican."
           align="start"
         >
           <CallToAction href="/servicios/" size="sm">
-            Nuestros Servicios
+            Ver Servicios <Icon icon="arrow-right" size="1.2em" />
           </CallToAction>
         </Hero>
 
@@ -83,12 +83,10 @@ const services = [
     </div>
 
     <main class="wrapper stack gap-20 lg:gap-24">
-      <section class="section with-background with-cta">
+      <section class="section with-background">
         <header class="section-header stack gap-2 lg:gap-4">
-          <h3>Nuestros Servicios</h3>
-          <p>
-            Aquí encontrarás una lista de nuestros servicios más destacados.
-          </p>
+          <h3>Conoce Nuestros Servicios</h3>
+          <p>Estos son nuestros servicios más destacados.</p>
         </header>
 
         <div class="gallery services-grid">
@@ -98,13 +96,6 @@ const services = [
             ))
           }
         </div>
-
-        <aside>
-          <CallToAction href="https://wa.me/59175923339">
-            <span class="cta-text">¿Cómo puedo ayudarte?</span>
-            <Icon icon="whatsapp-logo" size="1.5em" />
-          </CallToAction>
-        </aside>
       </section>
 
       <section class="section with-background bg-variant">
@@ -143,6 +134,14 @@ const services = [
     padding: 50px;
   }
 
+  .hero :global(a:hover svg) {
+    transform: translateX(0.45rem);
+  }
+
+  .hero :global(svg) {
+    transition: transform var(--theme-transition);
+  }
+
   /* Restore original hero title size for homepage */
   .hero :global(.title) {
     font-size: var(--text-2xl);
@@ -159,17 +158,7 @@ const services = [
       font-size: var(--text-4xl);
     }
   }
-  aside {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem;
-    border-top: 1px solid var(--gray-800);
-    border-bottom: 1px solid var(--gray-800);
-    padding: 5rem 1.5rem;
-    background-color: var(--gray-999_40);
-    box-shadow: var(--shadow-sm);
-  }
+
   @media (min-width: 50em) {
     .hero {
       display: grid;
@@ -236,19 +225,11 @@ const services = [
     font-size: var(--text-2xl);
   }
 
-  .with-cta .section-header h3 {
-    white-space: nowrap;
-  }
-
   @media (min-width: 50em) {
     .section {
       grid-template-columns: repeat(4, 1fr);
       grid-template-areas: "header header header header" "gallery gallery gallery gallery";
       gap: 5rem;
-    }
-
-    .section.with-cta {
-      grid-template-areas: "header header header cta" "gallery gallery gallery gallery";
     }
 
     .section-header {
@@ -260,17 +241,8 @@ const services = [
       font-size: var(--text-4xl);
     }
 
-    .with-cta .section-header {
-      justify-self: flex-start;
-      text-align: left;
-    }
-
     .gallery {
       grid-area: gallery;
-    }
-
-    .cta {
-      grid-area: cta;
     }
   }
 
@@ -293,36 +265,6 @@ const services = [
     .mention-card {
       border-radius: 1.5rem;
       height: 9.5rem;
-    }
-  }
-  /* Make the button floating */
-  aside :global(a) {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 1000;
-  }
-
-  .cta-text {
-    display: none;
-  }
-
-  @media (max-width: 50em) {
-    aside :global(a) {
-      padding: 0;
-      width: 3.5rem;
-      height: 3.5rem;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: var(--shadow-md);
-    }
-  }
-
-  @media (min-width: 50em) {
-    .cta-text {
-      display: inline;
     }
   }
 
