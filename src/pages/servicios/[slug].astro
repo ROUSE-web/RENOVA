@@ -283,8 +283,8 @@ const services = [
         ],
     },
     {
-        title: "Fotografía al aire libre",
-        slug: "fotografia-al-aire-libre",
+        title: "Fotografía en exteriores",
+        slug: "fotografia-en-exteriores",
         subtitle: "Fotografía profesional en exteriores",
         description:
             "Fotografía profesional en exteriores para todo tipo de proyectos. Capturamos la esencia de tu marca en entornos naturales y urbanos con composiciones creativas y atención al detalle.",
@@ -294,7 +294,6 @@ const services = [
             "/assets/services/outdoor-photography/proyecto-3.webp",
             "/assets/services/outdoor-photography/proyecto-4.webp",
             "/assets/services/outdoor-photography/proyecto-5.webp",
-            "/assets/services/outdoor-photography/proyecto-6.webp",
             "/assets/services/outdoor-photography/proyecto-7.webp",
             "/assets/services/outdoor-photography/proyecto-8.webp",
             "/assets/services/outdoor-photography/proyecto-9.webp",
@@ -305,22 +304,22 @@ const services = [
         ],
         workTypes: [
             {
-                title: "Fotografía de Arquitectura",
+                title: "Paquete individual",
                 description:
-                    "Fotografía profesional de arquitectura en exteriores con atención al detalle y composiciones creativas.",
-                icon: "building",
+                    "Sesión profesional en fotoestudio para una sola persona. Consulta nuestro paquete. Incluye fotos digitales e impresas.",
+                icon: "user",
             },
             {
-                title: "Fotografía de Paisajes",
+                title: "Paquete grupal o pareja",
                 description:
-                    "Fotografía profesional de paisajes con atención al detalle y composiciones creativas.",
-                icon: "mountains",
+                    "Sesión en exterior para pareja o grupal en una locación.",
+                icon: "users",
             },
             {
-                title: "Fotografía de Eventos",
+                title: "Paquete para eventos sociales",
                 description:
-                    "Fotografía profesional de eventos en exteriores con atención al detalle y composiciones creativas.",
-                icon: "camera",
+                    "Realizamos fotografia para eventos sociales o  acontecimientos como bodas, cumpleaños, pedidas de mano, baby shower, aniversarios, etc.",
+                icon: "calendar",
             },
         ],
     },
@@ -337,51 +336,38 @@ const services = [
             "/assets/services/indoor-photography/proyecto-4.webp",
             "/assets/services/indoor-photography/proyecto-5.webp",
             "/assets/services/indoor-photography/proyecto-6.webp",
+            "/assets/services/indoor-photography/proyecto-7.webp",
+            "/assets/services/indoor-photography/proyecto-8.webp",
+            "/assets/services/indoor-photography/proyecto-9.webp",
+            "/assets/services/indoor-photography/proyecto-10.webp",
+            "/assets/services/indoor-photography/proyecto-11.webp",
+            "/assets/services/indoor-photography/proyecto-12.webp",
+            "/assets/services/indoor-photography/proyecto-13.webp",
         ],
         workTypes: [
             {
-                title: "Fotografía de Producto",
+                title: "Paquete individual",
                 description:
-                    "Fotografía profesional de productos en interiores con luz natural y composiciones creativas.",
-                icon: "camera",
+                    "Sesión profesional en fotoestudio para una sola persona. Consulta nuestro paquete. Incluye fotos digitales e impresas.",
+                icon: "user",
             },
             {
-                title: "Fotografía de Eventos",
+                title: "Paquete grupal o familiar",
                 description:
-                    "Fotografía profesional de eventos en interiores con atención al detalle y composiciones creativas.",
-                icon: "calendar",
-            },
-        ],
-    },
-    {
-        title: "Fotomontajes",
-        slug: "fotomontajes",
-        subtitle: "Fotomontajes profesionales",
-        description: "Fotomontajes profesionales para todo tipo de proyectos.",
-        images: [
-            "/assets/services/photomontage/proyecto-1.webp",
-            "/assets/services/photomontage/proyecto-2.webp",
-            "/assets/services/photomontage/proyecto-3.webp",
-            "/assets/services/photomontage/proyecto-4.webp",
-            "/assets/services/photomontage/proyecto-5.webp",
-            "/assets/services/photomontage/proyecto-6.webp",
-            "/assets/services/photomontage/proyecto-7.webp",
-        ],
-        workTypes: [
-            {
-                title: "Fotomontaje de Producto",
-                description: "Fotomontaje profesional de productos.",
-                icon: "camera",
+                    "Sesión fotografica grupal para más de 3 personas en fotoestudio. Incluye fotos digitales e impresas.",
+                icon: "users",
             },
             {
-                title: "Fotomontaje de Paisajes",
-                description: "Fotomontaje profesional de paisajes.",
-                icon: "mountains",
+                title: "Mozaicos personalizados",
+                description:
+                    "De las sesiones fotográficas puedes escoger una fotografía, y  realizamos tu mosaico para que sea tu recuerdo inolvidable.",
+                icon: "image",
             },
             {
-                title: "Fotomontaje de Eventos",
-                description: "Fotomontaje profesional de eventos.",
-                icon: "calendar",
+                title: "Fotomontajes",
+                description:
+                    "Realizamos fotomontajes personalizados para todo tipo de proyectos.",
+                icon: "image",
             },
         ],
     },
@@ -411,9 +397,8 @@ export function getStaticPaths() {
         { params: { slug: "social-media" } },
         { params: { slug: "desarrollo-web" } },
         { params: { slug: "gigantografia" } },
-        { params: { slug: "fotografia-al-aire-libre" } },
+        { params: { slug: "fotografia-en-exteriores" } },
         { params: { slug: "fotografia-en-interiores" } },
-        { params: { slug: "fotomontajes" } },
     ];
 }
 ---
