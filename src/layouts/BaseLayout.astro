@@ -6,8 +6,7 @@
 import MainHead from "../components/MainHead.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-import CallToAction from "../components/CallToAction.astro";
-import Icon from "../components/Icon.astro";
+import BrandIcon from "../components/BrandIcon.astro";
 import Analytics from '@vercel/analytics/astro';
 
 interface Props {
@@ -102,10 +101,14 @@ const { title, description } = Astro.props;
     </div>
 
     <aside class="floating-cta">
-      <CallToAction href="https://wa.me/59175923339" size="sm">
-        <span class="cta-text">¿Cómo puedo ayudarte?</span>
-        <Icon icon="whatsapp-logo" size="1.2em" />
-      </CallToAction>
+      <a
+        class="contact-button"
+        href="https://wa.me/59175923339"
+        aria-label="¿Cómo puedo ayudarte? Escríbenos por WhatsApp"
+      >
+        <span class="cta-text" aria-hidden="true">¿Cómo puedo ayudarte?</span>
+        <span class="contact-icon"><BrandIcon icon="whatsapp-logo" /></span>
+      </a>
     </aside>
 
     <script>
@@ -401,48 +404,124 @@ const { title, description } = Astro.props;
         }
       }
 
-      /* Floating CTA Styles */
+      /* Floating WhatsApp contact */
       .floating-cta {
         position: fixed;
-        bottom: 1.5rem;
-        right: 1.5rem;
+        bottom: max(1.5rem, env(safe-area-inset-bottom));
+        right: max(1.5rem, env(safe-area-inset-right));
         z-index: 1000;
       }
 
-      .floating-cta :global(a) {
-        opacity: 0.9;
+      .contact-button {
+        --contact-size: 3.75rem;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: var(--contact-size);
+        max-width: calc(100vw - 3rem);
+        height: var(--contact-size);
+        padding: .55rem;
+        overflow: hidden;
+        border: 1px solid rgb(118 17 166 / 20%);
+        border-radius: 999px;
+        background: rgb(255 255 255 / 94%);
+        color: #382345;
+        box-shadow: 0 8px 28px rgb(37 12 56 / 14%);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        text-decoration: none;
         transition:
-          transform 0.2s ease,
-          opacity 0.2s ease;
+          width .45s cubic-bezier(.22, 1, .36, 1),
+          transform .3s ease,
+          border-color .3s ease,
+          box-shadow .3s ease;
       }
 
-      .floating-cta :global(a:hover) {
-        opacity: 1;
-        transform: scale(1.05);
+      :global(.theme-dark) .contact-button {
+        background: rgb(27 18 40 / 94%);
+        border-color: rgb(197 139 234 / 30%);
+        color: #f5edf9;
+        box-shadow: 0 8px 28px rgb(0 0 0 / 28%);
+      }
+
+      .contact-icon {
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background: #8b3fbd;
+        color: #fff;
       }
 
       .cta-text {
-        display: none;
-        font-size: var(--text-sm);
+        position: absolute;
+        left: 1.1rem;
+        right: var(--contact-size);
+        overflow: hidden;
+        opacity: 0;
+        transform: translateX(.75rem);
+        pointer-events: none;
+        transition: opacity .18s ease, transform .35s cubic-bezier(.22, 1, .36, 1);
+        font-size: .875rem;
+        font-weight: 500;
+        line-height: 1.3;
+        white-space: nowrap;
       }
 
-      @media (max-width: 50em) {
-        .floating-cta :global(a) {
-          padding: 0;
-          width: 3rem;
-          height: 3rem;
-          border-radius: 50%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          box-shadow: var(--shadow-sm);
+      .contact-button:focus-visible {
+        width: 16.5rem;
+      }
+
+      .contact-button:focus-visible .cta-text {
+        opacity: 1;
+        transform: translateX(0);
+        transition-delay: .08s;
+      }
+
+      @media (hover: hover) {
+        .contact-button:hover {
+          width: 16.5rem;
+          transform: translateY(-3px);
+          border-color: #b675df;
+          box-shadow: 0 12px 32px rgb(118 17 166 / 22%);
+        }
+
+        .contact-button:hover .cta-text {
+          opacity: 1;
+          transform: translateX(0);
+          transition-delay: .08s;
         }
       }
 
-      @media (min-width: 50em) {
-        .cta-text {
-          display: inline;
+      .contact-button:focus-visible {
+        outline: 3px solid var(--link-color);
+        outline-offset: 4px;
+      }
+
+      .contact-button:active {
+        transform: translateY(0);
+      }
+
+      @media (max-width: 49.99em) {
+        .floating-cta {
+          bottom: max(1rem, env(safe-area-inset-bottom));
+          right: max(1rem, env(safe-area-inset-right));
         }
+
+        .contact-button {
+          --contact-size: 3.5rem;
+          padding: .4375rem;
+        }
+
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .contact-button,
+        .cta-text { transition: none; }
+        .contact-button:hover { transform: none; }
       }
     </style>
   </body>
