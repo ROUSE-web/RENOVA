@@ -24,20 +24,34 @@ const { title, description } = Astro.props;
   <body>
     <Analytics />
     <!-- Video Intro Overlay -->
-    <div id="video-intro" class="video-intro">
-      <video id="intro-video" playsinline class="intro-video">
-        <source src="/assets/Renova.mp4" type="video/mp4" />
+    <div id="video-intro" class="video-intro" role="dialog" aria-modal="true" aria-label="Presentación de Renovate" hidden>
+      <video
+        id="intro-video"
+        class="intro-video"
+        width="720"
+        height="1280"
+        playsinline
+        muted
+        preload="none"
+        aria-label="Animación del logotipo de Renovate Estudio Creativo"
+      >
+        <source src="/assets/intro.mp4" type="video/mp4" />
       </video>
+
+      <button id="play-intro" class="control-btn play-btn" type="button" hidden>
+        Reproducir presentación
+      </button>
 
       <button
         id="toggle-sound"
         class="control-btn sound-btn"
-        aria-label="Alternar sonido"
+        aria-label="Activar sonido"
+        aria-pressed="false"
+        type="button"
       >
-        <!-- Icon Muted (Hidden by default) -->
+        <!-- Playback begins muted for mobile autoplay. -->
         <svg
           id="icon-muted"
-          class="hidden"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -52,9 +66,10 @@ const { title, description } = Astro.props;
           <line x1="23" y1="9" x2="17" y2="15"></line>
           <line x1="17" y1="9" x2="23" y2="15"></line>
         </svg>
-        <!-- Icon Unmuted (Visible by default) -->
+
         <svg
           id="icon-unmuted"
+          class="hidden"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -112,95 +127,114 @@ const { title, description } = Astro.props;
     </aside>
 
     <script>
-      // Video Intro Logic
-      const videoIntro = document.getElementById("video-intro");
-      const introVideo = document.getElementById(
-        "intro-video",
-      ) as HTMLVideoElement;
-      const skipBtn = document.getElementById("skip-intro");
-      const soundBtn = document.getElementById("toggle-sound");
-      const iconMuted = document.getElementById("icon-muted");
-      const iconUnmuted = document.getElementById("icon-unmuted");
-      const SESSION_KEY = "renova_intro_watched";
+      import { transitionIntroToLogo } from "../scripts/introTransition";
 
-      function hideIntro() {
-        if (videoIntro) {
-          videoIntro.classList.add("fade-out");
-          setTimeout(() => {
-            videoIntro.style.display = "none";
-            document.body.style.overflow = "";
-            sessionStorage.setItem(SESSION_KEY, "true");
-          }, 800);
+      const videoIntro = document.getElementById("video-intro")!;
+      const introVideo = document.getElementById("intro-video") as HTMLVideoElement;
+      const skipBtn = document.getElementById("skip-intro")!;
+      const soundBtn = document.getElementById("toggle-sound")!;
+      const playBtn = document.getElementById("play-intro")!;
+      const iconMuted = document.getElementById("icon-muted")!;
+      const iconUnmuted = document.getElementById("icon-unmuted")!;
+      const pageContent = document.querySelector<HTMLElement>(".backgrounds")!;
+      const floatingContact = document.querySelector<HTMLElement>(".floating-cta")!;
+      const SESSION_KEY = "renova_intro_watched";
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      let closingIntro = false;
+      let previousFocus: HTMLElement | null = null;
+      let previousOverflow = "";
+      let previousRootOverflow = "";
+
+      async function hideIntro(animateLogo = false) {
+        if (closingIntro || videoIntro.hidden) return;
+        closingIntro = true;
+        introVideo.pause();
+        try {
+          let transferred = false;
+          if (animateLogo && !reduceMotion.matches) {
+            try {
+              transferred = await transitionIntroToLogo(introVideo, videoIntro);
+            } catch {
+              // Keep the page accessible if frame capture or animation is unavailable.
+            }
+          }
+          if (!transferred && !reduceMotion.matches && !videoIntro.hidden) {
+            videoIntro.classList.add("fade-out");
+            await new Promise((resolve) => window.setTimeout(resolve, 450));
+          }
+        } finally {
+          videoIntro.hidden = true;
+          pageContent.inert = false;
+          floatingContact.inert = false;
+          document.body.style.overflow = previousOverflow;
+          document.documentElement.style.overflow = previousRootOverflow;
+          try { sessionStorage.setItem(SESSION_KEY, "true"); } catch {}
+          previousFocus?.focus({ preventScroll: true });
         }
       }
 
       function updateSoundIcons() {
-        if (!iconMuted || !iconUnmuted || !introVideo) return;
-        if (introVideo.muted) {
-          iconMuted.classList.remove("hidden");
-          iconUnmuted.classList.add("hidden");
-        } else {
-          iconMuted.classList.add("hidden");
-          iconUnmuted.classList.remove("hidden");
+        iconMuted.classList.toggle("hidden", !introVideo.muted);
+        iconUnmuted.classList.toggle("hidden", introVideo.muted);
+        soundBtn.setAttribute("aria-label", introVideo.muted ? "Activar sonido" : "Silenciar presentación");
+        soundBtn.setAttribute("aria-pressed", String(!introVideo.muted));
+      }
+
+      async function playIntro() {
+        playBtn.hidden = true;
+        try {
+          await introVideo.play();
+        } catch {
+          if (!closingIntro && !videoIntro.hidden) {
+            playBtn.hidden = false;
+            playBtn.focus({ preventScroll: true });
+          }
         }
       }
 
-      // Check if intro was already watched in this session
-      if (sessionStorage.getItem(SESSION_KEY)) {
-        if (videoIntro) {
-          videoIntro.style.display = "none";
-        }
-      } else {
-        // Prevent scrolling while video is playing
+      let watched = false;
+      try { watched = Boolean(sessionStorage.getItem(SESSION_KEY)); } catch {}
+
+      if (!watched) {
+        previousFocus = document.activeElement as HTMLElement;
+        previousOverflow = document.body.style.overflow;
+        previousRootOverflow = document.documentElement.style.overflow;
+        videoIntro.hidden = false;
+        pageContent.inert = true;
+        floatingContact.inert = true;
         document.body.style.overflow = "hidden";
+        document.documentElement.style.overflow = "hidden";
+        introVideo.muted = true;
+        updateSoundIcons();
+        skipBtn.focus({ preventScroll: true });
+        void playIntro();
+      }
 
-        // When video ends, hide the intro
-        if (introVideo) {
-          // Attempt to play with sound
-          const playPromise = introVideo.play();
+      introVideo.addEventListener("ended", () => void hideIntro(true));
+      introVideo.addEventListener("error", () => void hideIntro());
+      introVideo.querySelector("source")?.addEventListener("error", () => void hideIntro());
+      introVideo.addEventListener("volumechange", updateSoundIcons);
+      playBtn.addEventListener("click", () => void playIntro());
+      skipBtn.addEventListener("click", () => void hideIntro());
+      soundBtn.addEventListener("click", () => {
+        introVideo.muted = !introVideo.muted;
+      });
 
-          if (playPromise !== undefined) {
-            playPromise.catch((error) => {
-              // Auto-play was prevented (likely due to sound).
-              // Fallback: Mute and play.
-              console.log(
-                "Autoplay with sound blocked. Falling back to muted autoplay.",
-              );
-              introVideo.muted = true;
-              updateSoundIcons();
-              introVideo.play();
-            });
+      videoIntro.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") hideIntro();
+        if (event.key === "Tab") {
+          const controls = Array.from(videoIntro.querySelectorAll<HTMLButtonElement>("button:not([hidden])"));
+          const first = controls[0];
+          const last = controls[controls.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
           }
-
-          introVideo.addEventListener("ended", hideIntro);
         }
-      }
-
-      // Sound Toggle Logic
-      if (soundBtn && introVideo) {
-        soundBtn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          introVideo.muted = !introVideo.muted;
-          updateSoundIcons();
-        });
-      }
-
-      // Skip button functionality
-      if (skipBtn) {
-        skipBtn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          hideIntro();
-        });
-      }
-
-      // Also allow clicking anywhere on the video to skip
-      if (videoIntro) {
-        videoIntro.addEventListener("click", (e) => {
-          if (e.target === videoIntro || e.target === introVideo) {
-            hideIntro();
-          }
-        });
-      }
+      });
 
       // Add "loaded" class once the document has completely loaded.
       addEventListener("load", () =>
@@ -209,109 +243,120 @@ const { title, description } = Astro.props;
     </script>
 
     <style>
-      /* Video Intro Styles */
+      /* The vertical film keeps its full 9:16 frame on every screen. */
       .video-intro {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
+        inset: 0;
+        width: 100%;
         height: 100vh;
-        z-index: 9999;
-        background-color: #000;
+        height: 100dvh;
+        z-index: 10001;
         display: flex;
         align-items: center;
         justify-content: center;
-        cursor: pointer;
-        transition:
-          opacity 0.8s ease-out,
-          visibility 0.8s ease-out;
+        overflow: hidden;
+        isolation: isolate;
+        background: linear-gradient(180deg, #e5e5e5, #d9dadd);
+        transition: opacity .45s ease-out, visibility .45s ease-out;
       }
 
-      .hidden {
+      .hidden,
+      .video-intro[hidden],
+      .control-btn[hidden] {
         display: none;
       }
 
       .video-intro.fade-out {
         opacity: 0;
         visibility: hidden;
+        pointer-events: none;
       }
 
       .intro-video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        display: block;
+        width: min(100%, 720px, 56.25vh);
+        width: min(100%, 720px, 56.25dvh);
+        height: auto;
+        max-height: 100%;
+        min-height: 0;
+        aspect-ratio: 9 / 16;
+        object-fit: contain;
+        object-position: center;
+        /* Blend only the film's empty margins into the surrounding gray. */
+        mask-image:
+          linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent),
+          linear-gradient(180deg, transparent, #000 6%, #000 94%, transparent);
+        mask-composite: intersect;
       }
 
       .control-btn {
         position: absolute;
+        z-index: 1;
         display: flex;
         align-items: center;
-        gap: 8px;
-        padding: 12px 24px;
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 50px;
-        color: white;
-        font-size: 14px;
+        justify-content: center;
+        gap: .5rem;
+        min-height: 2.75rem;
+        padding: .75rem 1.25rem;
+        border: 1px solid rgb(84 37 112 / 20%);
+        border-radius: 999px;
+        background: rgb(255 255 255 / 80%);
+        color: #542570;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 4px 16px rgb(46 21 62 / 8%);
+        font-family: var(--font-body);
+        font-size: .875rem;
         font-weight: 500;
-        letter-spacing: 0.5px;
         cursor: pointer;
-        transition: all 0.3s ease;
-        z-index: 10000;
+        transition: background-color .2s ease, transform .2s ease;
       }
 
       .control-btn:hover {
-        background: rgba(255, 255, 255, 0.25);
-        transform: scale(1.05);
+        background: #fff;
+        transform: translateY(-2px);
       }
 
-      .control-btn:active {
-        transform: scale(0.98);
+      .control-btn:focus-visible {
+        outline: 2px solid #7611a6;
+        outline-offset: 4px;
       }
 
       .skip-btn {
-        bottom: 40px;
-        right: 40px;
+        bottom: max(2rem, env(safe-area-inset-bottom));
+        right: max(2rem, env(safe-area-inset-right));
       }
 
       .sound-btn {
-        bottom: 40px;
-        left: 40px;
-        padding: 12px;
-        border-radius: 50%;
+        bottom: max(2rem, env(safe-area-inset-bottom));
+        left: max(2rem, env(safe-area-inset-left));
+        width: 2.75rem;
+        padding: .625rem;
       }
 
-      @media (max-width: 768px) {
+      .play-btn {
+        bottom: max(6rem, calc(env(safe-area-inset-bottom) + 4rem));
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+      }
+
+      .play-btn:hover { transform: translateX(-50%); }
+
+      @media (max-width: 48em), (max-height: 32em) {
         .skip-btn {
-          bottom: 30px;
-          right: 20px;
-          padding: 10px 20px;
-          font-size: 13px;
+          right: max(1rem, env(safe-area-inset-right));
+          bottom: max(1rem, env(safe-area-inset-bottom));
         }
 
         .sound-btn {
-          bottom: 30px;
-          left: 20px;
-          padding: 10px;
+          left: max(1rem, env(safe-area-inset-left));
+          bottom: max(1rem, env(safe-area-inset-bottom));
         }
       }
 
-      /* Mejor visualización del video en móviles verticales */
-      @media (max-width: 768px) and (orientation: portrait) {
-        .intro-video {
-          width: 100%;
-          height: auto;
-          max-height: 100vh;
-          object-fit: contain;
-        }
-
-        .video-intro {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
+      @media (prefers-reduced-motion: reduce) {
+        .video-intro, .control-btn { transition: none; }
       }
 
       :root {
