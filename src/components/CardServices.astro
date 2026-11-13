@@ -1,5 +1,6 @@
 ---
 import Icon from "./Icon.astro";
+import { versionServiceImage } from "../utils/serviceImage";
 
 interface Props {
     title: string;
@@ -7,6 +8,7 @@ interface Props {
 }
 
 const { title, image } = Astro.props;
+const imageUrl = versionServiceImage(image);
 
 // Generate URL-friendly slug from title
 const slug = title
@@ -17,7 +19,7 @@ const slug = title
 ---
 
 <a href={`/servicios/${slug}`} class="service-card">
-    <div class="card-image" style={`background-image: url(${image})`}></div>
+    <div class="card-image" style={`background-image: url(${imageUrl})`}></div>
     <div class="card-overlay"></div>
     <div class="card-content">
         <h3 class="service-title">{title}</h3>

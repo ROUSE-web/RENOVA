@@ -1,10 +1,13 @@
 ---
+import { versionServiceImage } from "../utils/serviceImage";
+
 interface Props {
     images: string[];
     serviceSlug: string;
 }
 
-const { images, serviceSlug } = Astro.props;
+const { images: sourceImages, serviceSlug } = Astro.props;
+const images = sourceImages.map(versionServiceImage);
 ---
 
 <div class="carousel-3d-container">
