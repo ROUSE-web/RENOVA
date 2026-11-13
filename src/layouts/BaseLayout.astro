@@ -20,6 +20,37 @@ const { title, description } = Astro.props;
 <html lang="es">
   <head>
     <MainHead title={title} description={description} />
+    <script is:inline>
+      // Decide before the first paint, without waiting for the module bundle.
+      (() => {
+        let watched = false;
+        try { watched = Boolean(sessionStorage.getItem("renova_intro_watched")); } catch {}
+        if (!watched) document.documentElement.setAttribute("data-intro-pending", "");
+
+        // Leave the page usable if the main script cannot initialize.
+        window.addEventListener("load", () => {
+          if (document.documentElement.hasAttribute("data-intro-pending")) {
+            document.getElementById("video-intro")?.setAttribute("hidden", "");
+            document.documentElement.removeAttribute("data-intro-pending");
+          }
+        }, { once: true });
+      })();
+    </script>
+    <style is:inline>
+      html[data-intro-pending] {
+        overflow: hidden;
+        background: #e5e5e5;
+      }
+
+      html[data-intro-pending] .backgrounds,
+      html[data-intro-pending] .floating-cta {
+        visibility: hidden;
+      }
+
+      html[data-intro-pending] #video-intro[hidden] {
+        display: flex;
+      }
+    </style>
   </head>
   <body>
     <Analytics />
@@ -108,6 +139,15 @@ const { title, description } = Astro.props;
         </svg>
       </button>
     </div>
+
+    <script is:inline>
+      if (document.documentElement.hasAttribute("data-intro-pending")) {
+        // Start fetching as soon as the video is parsed, only for first visits.
+        const video = document.getElementById("intro-video");
+        video.preload = "auto";
+        video.load();
+      }
+    </script>
 
     <div class="stack backgrounds">
       <Nav />
@@ -209,6 +249,7 @@ const { title, description } = Astro.props;
         skipBtn.focus({ preventScroll: true });
         void playIntro();
       }
+      document.documentElement.removeAttribute("data-intro-pending");
 
       introVideo.addEventListener("ended", () => void hideIntro(true));
       introVideo.addEventListener("error", () => void hideIntro());
