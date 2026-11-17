@@ -7,7 +7,7 @@ import WorkTypes from "../../components/WorkTypes.astro";
 // Define all services with their slugs, images, and work types
 const services = [
     {
-        title: "Creación de Marca",
+        title: "Creación de Marcas",
         slug: "creacion-de-marca",
         subtitle: "Desarrollo de identidad visual y estrategia de marca",
         description:
@@ -209,6 +209,14 @@ const services = [
             "/assets/services/web-dev/proyecto-4.webp",
             "/assets/services/web-dev/proyecto-5.webp",
         ],
+        // Cambia cada URL por la web correspondiente a esa imagen.
+        projectLinks: {
+            "/assets/services/web-dev/proyecto-1.webp": "https://www.renovatecreativo.com/",
+            "/assets/services/web-dev/proyecto-2.webp": "https://www.plomeriacampos.net/",
+            "/assets/services/web-dev/proyecto-3.webp": "https://certificatebolivia.com.bo/",
+            "/assets/services/web-dev/proyecto-4.webp": "https://www.wasi.digital/",
+            "/assets/services/web-dev/proyecto-5.webp": "https://menu.wasi.digital/el-gran-mako",
+        },
         workTypes: [
             {
                 title: "Landing Pages",
@@ -248,6 +256,9 @@ const services = [
             "/assets/services/gigantografia/proyecto-3.webp",
             "/assets/services/gigantografia/proyecto-4.webp",
             "/assets/services/gigantografia/proyecto-5.webp",
+            "/assets/services/gigantografia/proyecto-6.webp",
+            "/assets/services/gigantografia/proyecto-7.webp",
+            "/assets/services/gigantografia/proyecto-8.webp",
         ],
         workTypes: [
             {
@@ -411,6 +422,7 @@ export function getStaticPaths() {
                 <Carousel3D
                     images={service.images}
                     serviceSlug={service.slug}
+                    projectLinks={service.projectLinks}
                 />
             </section>
 
